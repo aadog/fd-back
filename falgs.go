@@ -12,7 +12,7 @@ func entry()error{
 
 	create:=flag.NewFlagSet("create",flag.ExitOnError)
 	create.Usage= func() {
-		fmt.Fprintf(create.Output(), "创建工程 使用方法:%s\n", "create pdir")
+		fmt.Fprintf(create.Output(), "============== 创建工程 使用方法:%s\n", "create pdir")
 		create.PrintDefaults()
 	}
 	create_dir:=""
@@ -20,7 +20,7 @@ func entry()error{
 
 	run:=flag.NewFlagSet("run",flag.ExitOnError)
 	run.Usage= func() {
-		fmt.Fprintf(run.Output(), "脚本调试 使用方法:%s\n", "run 1.js -name 通讯录")
+		fmt.Fprintf(run.Output(), "============== 脚本调试 使用方法:%s\n", "run 1.js -name 通讯录")
 		run.PrintDefaults()
 	}
 	run_name:=run.String("name","","调试进程名称,比如 通讯录,(lsps的结果中可以看到)")
@@ -29,7 +29,7 @@ func entry()error{
 
 	compile:=flag.NewFlagSet("compile",flag.ExitOnError)
 	compile.Usage= func() {
-		fmt.Fprintf(compile.Output(), "脚本编译 使用方法:%s\n", "compile 1.js -name 通讯录")
+		fmt.Fprintf(compile.Output(), "============== 脚本编译 使用方法:%s\n", "compile 1.js -name 通讯录")
 		compile.PrintDefaults()
 	}
 	compile_jspath:=""
@@ -37,19 +37,19 @@ func entry()error{
 
 	lsapp:=flag.NewFlagSet("lsapp",flag.ExitOnError)
 	lsapp.Usage= func() {
-		fmt.Fprintf(lsapp.Output(), "列出所有application 使用方法:%s\n", "lsapp")
+		fmt.Fprintf(lsapp.Output(), "============== 列出所有application 使用方法:%s\n", "lsapp")
 		lsapp.PrintDefaults()
 	}
 
 	lsps:=flag.NewFlagSet("lsps",flag.ExitOnError)
 	lsps.Usage= func() {
-		fmt.Fprintf(lsps.Output(), "列出所有进程 使用方法:%s\n", "lsps")
+		fmt.Fprintf(lsps.Output(), "============== 列出所有进程 使用方法:%s\n", "lsps")
 		lsps.PrintDefaults()
 	}
 
 	api:=flag.NewFlagSet("api",flag.ExitOnError)
 	api.Usage= func() {
-		fmt.Fprintf(api.Output(), "api导出 使用方法:%s\n", "api 1.js -name 通讯录")
+		fmt.Fprintf(api.Output(), "============== api导出 使用方法:%s\n", "api 1.js -name 通讯录")
 		api.PrintDefaults()
 	}
 	api_http:=api.Bool("http",true,"导出http接口")

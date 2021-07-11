@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 )
-//go:embed frida-agent-example/*
+//go:embed frida-agent-example
 var frida_agent_example embed.FS
 
 type CreateParam struct {
@@ -38,7 +38,7 @@ func (l *Create) Run(param CreateParam) error {
 			    return err
 			}
 		}else{
-			o,err:=os.ReadFile(path)
+			o,err:=frida_agent_example.ReadFile(path)
 			if err!=nil{
 			    return err
 			}
