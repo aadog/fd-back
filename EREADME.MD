@@ -1,24 +1,25 @@
-## fd windows下frida的调试工具 (单 exe,不需要python和nodejs)
+## fd windows frida debug tools (single exe)
 
-#### 现在他只支持USB
+#### Now he only supports USB
 
-[english click here](./EREADME.MD)
+[简体中文直接点这里](./README.MD)
+
+#### [The precompiled binary is downloaded here](https://github.com/a97077088/fd/releases)
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
 
 
-#### 支持列表:
+#### Support List:
 
-- 创建一个基于 frida-agent-example的typescript工程(拥有完美的智能提示)
-- 使用webstorm进行调试，就像在开发一样,运行,暂停,打印消息
-- 编译脚本为byte code(可以加速,或者加密?)
-- 显示所有app列表
-- 显示所有进程列表
-- 一键导出api为http或者grpc接口来调用
+- create frida-agent-example application
+- run (webstorm debug,It's like development engineering)
+- compile (compile script to byte file)
+- lsapp (show list application)
+- lsps (show list process)
+- api (export api to http/grpc)
 
-### 创建frida工程
 
-### create frida-agent-example
+### create frida-agent-example application
 ```
 cd ~/src
 fd create myfrida
@@ -26,12 +27,8 @@ cd myfrida
 npm install
 fd run _agent.js -name 通讯录
 ```
-
 ![](gif/create.gif)
-
-### 运行js到设备
-
-### run _agent.js -name 通讯录
+### run 
 
 ```
 cd ~/src
@@ -47,9 +44,7 @@ Run/Debug Configurations
 ```
 
 ### run (webstorm debug,It's like development engineering)
-
-![](gif/run.gif
-
+![](gif/run.gif)
 ```
 cd ~/src
 fd create myfrida
@@ -58,12 +53,8 @@ npm install
 fd run _agent.js -name 通讯录
 ```
 
-### 编译脚本到byte
-
-### compile _agent.js -name 通讯录
-
+### compile (compile script to byte file)
 ![](gif/compile.gif)
-
 ```
 cd ~/src
 fd create myfrida
@@ -73,28 +64,19 @@ fd compile _agent.js -name 通讯录
 New file _agent.compile.js appears in the current directory
 ```
 
-### 列出所有设备上的application
-
-### lsapp
-
+### lsapp (show list application)
 ```
 fd lsapp
 All applications are now listed
 ```
 
-### 列出设备上所有ps
-
-### lsps
-
+### lsps (show list process)
 ```
 fd lsapp
 All process are now listed
 ```
 
-### 导出api到http或grpc
-
 ### api (export api to http/grpc)
-
 ```
 fd api api.js -name 通讯录 -address :8080
 Now you can call the API in a format like the following
@@ -119,8 +101,6 @@ ret:
 }
 ```
 
-
-### 运行帮助
 
 ```
 fd --help
