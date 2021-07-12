@@ -2,6 +2,9 @@
 
 ####Now he only supports USB
 
+#### [The precompiled binary is downloaded here](https://github.com/a97077088/fd/releases)
+
+
 #### Support List:
 
 - create frida-agent-example application
