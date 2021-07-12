@@ -3,7 +3,7 @@ module fd
 go 1.17
 
 require (
-	github.com/a97077088/frida-go v0.0.0-20210712043052-0cb06e5fe9d0
+	github.com/a97077088/frida-go v0.0.0-20210712144706-ed7869759201
 	github.com/gin-gonic/gin v1.7.2
 	github.com/json-iterator/go v1.1.11
 	github.com/unrolled/render v1.4.0
