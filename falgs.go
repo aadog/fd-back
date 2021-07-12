@@ -101,7 +101,7 @@ func entry()error{
 		}
 		api_jspath=os.Args[2]
 		api.Parse(os.Args[3:])
-		if *compile_name==""{
+		if *api_name==""{
 			fmt.Println("name参数解析失败")
 			api.Usage()
 			return nil

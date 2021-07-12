@@ -1,7 +1,13 @@
+github.com/a97077088/dylib v0.0.0-20210414124638-bf395b2d391a h1:MjzNosM+ubgGdkyAU29THTMwB25rP8F2iDtdOIvLJJ8=
+github.com/a97077088/dylib v0.0.0-20210414124638-bf395b2d391a/go.mod h1:4rTH5TmKb5ymMB6D91gsw6PaxV/nIhCDo4P+TyDKH14=
 github.com/a97077088/frida-go v0.0.0-20210712035427-2227c40545df h1:yEn2+vyDqVM/W2E+9l8nFDVPxpdhAFor9KFICoqQpAo=
 github.com/a97077088/frida-go v0.0.0-20210712035427-2227c40545df/go.mod h1:t1Q6YshypLGY5bs/aZT7UH3Ty/HKR7Gx8UcR7B0/HNY=
+github.com/a97077088/frida-go v0.0.0-20210712043052-0cb06e5fe9d0 h1:iL6tOUN3kVzyFyIuRUhUrPYhA+fK0sk6rVhDX1RmGaM=
+github.com/a97077088/frida-go v0.0.0-20210712043052-0cb06e5fe9d0/go.mod h1:t1Q6YshypLGY5bs/aZT7UH3Ty/HKR7Gx8UcR7B0/HNY=
 github.com/a97077088/libfridabinres v0.0.0-20210712033748-9c1aad67bce4 h1:3TkIue29q1AKDdMxCh+X1A2mmffRQHAWHMM4uXKiSF8=
 github.com/a97077088/libfridabinres v0.0.0-20210712033748-9c1aad67bce4/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
+github.com/a97077088/libfridabinres v0.0.0-20210712042226-3c2112ab7295 h1:FFYBcM/acimkN150SqC0UXzEpHeHR9ZnxZzhg7OMmvQ=
+github.com/a97077088/libfridabinres v0.0.0-20210712042226-3c2112ab7295/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
