@@ -50,6 +50,7 @@ fd run _agent.js -name 通讯录
 ```
 
 ### compile (compile script to byte file)
+![](gif/compile.gif)
 ```
 cd ~/src
 fd create myfrida
