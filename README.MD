@@ -23,7 +23,7 @@ cd myfrida
 npm install
 fd run _agent.js -name 通讯录
 ```
-
+![](gif/create.gif)
 ### run 
 
 ```
