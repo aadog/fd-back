@@ -40,7 +40,7 @@ Run/Debug Configurations
 ```
 
 ### run (webstorm debug,It's like development engineering)
-
+![](gif/run.gif)
 ```
 cd ~/src
 fd create myfrida
