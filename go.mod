@@ -3,13 +3,14 @@ module fd
 go 1.17
 
 require (
-	github.com/a97077088/frida-go v0.0.0-20210711154936-e374b1002a83
+	github.com/a97077088/frida-go v0.0.0-20210712035427-2227c40545df
 	github.com/gin-gonic/gin v1.7.2
 	github.com/json-iterator/go v1.1.11
 	github.com/unrolled/render v1.4.0
 )
 
 require (
+	github.com/a97077088/libfridabinres v0.0.0-20210712033748-9c1aad67bce4 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
