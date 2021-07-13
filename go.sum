@@ -10,6 +10,8 @@ github.com/a97077088/libfridabinres v0.0.0-20210712033748-9c1aad67bce4 h1:3TkIue
 github.com/a97077088/libfridabinres v0.0.0-20210712033748-9c1aad67bce4/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/a97077088/libfridabinres v0.0.0-20210712042226-3c2112ab7295 h1:FFYBcM/acimkN150SqC0UXzEpHeHR9ZnxZzhg7OMmvQ=
 github.com/a97077088/libfridabinres v0.0.0-20210712042226-3c2112ab7295/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
+github.com/a97077088/libfridabinres v0.0.0-20210713084234-7060bbc259f5 h1:WAi1JWMG93zjD9EkCUDC3ROMEf0dmS90/p2d+Ac5V3g=
+github.com/a97077088/libfridabinres v0.0.0-20210713084234-7060bbc259f5/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
