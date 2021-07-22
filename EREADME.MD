@@ -45,6 +45,12 @@ Run/Debug Configurations
 
 ### run (webstorm debug,It's like development engineering)
 ![](gif/run.gif)
+
+download file example:
+```
+send({"type":"download","filename":"dd","append":true},new Uint8Array([0x01]).buffer)
+```
+
 ```
 cd ~/src
 fd create myfrida

@@ -7,6 +7,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 type RunParam struct {
@@ -42,11 +43,13 @@ func (l *Run) Run(param RunParam) error {
 		return err
 	}
 	defer session.Detach()
+	fmt.Println("download file example: send({\"type\":\"download\",\"filename\":\"dd\",\"append\":true},new Uint8Array([0x01]).buffer)")
 
 	fd,err:=ioutil.ReadFile(param.JsPath)
 	if err!=nil{
 		return err
 	}
+	fd=append(fd,[]byte("\r\nconsole.log(\"script start\")")...)
 	var sc *frida_go.Script
 	if param.JsByte{
 		sc,err=session.CreateScriptFormBytes(fd,frida_go.ScriptOptions{})
@@ -68,6 +71,43 @@ func (l *Run) Run(param RunParam) error {
 			cancel()
 			log.Println(sjson.Get("stack").ToString())
 			log.Println(sjson.Get("fileName").ToString())
+		}else if tp=="send"{
+			sendtype:=sjson.Get("payload","type").ToString()
+			if sendtype=="download" || sendtype=="down" || sendtype=="downloadfile"{
+				fname:=sjson.Get("payload","filename").ToString()
+				if fname==""{
+					fname=sjson.Get("payload","fname").ToString()
+				}
+				appendfile:=sjson.Get("payload","append").ToBool()
+				if fname==""{
+					log.Println(sjson.ToString())
+					return
+				}
+				todir:=fmt.Sprintf("./download")
+				err=os.MkdirAll(todir,os.ModePerm)
+				if err!=nil{
+					log.Println(err.Error())
+					return
+				}
+
+				fg:=os.O_CREATE
+				if appendfile==true{
+					fg|=os.O_APPEND
+				}
+				f,err:=os.OpenFile(fmt.Sprintf("%s/%s",todir,fname),fg,os.ModePerm)
+				if err!=nil{
+					log.Println(err.Error())
+					return
+				}
+				defer f.Close()
+				_,err=f.Write(data)
+				if err!=nil{
+					log.Println(err.Error())
+					return
+				}
+			}else {
+				log.Println(sjson.ToString())
+			}
 		}else{
 			log.Println(sjson.ToString())
 		}

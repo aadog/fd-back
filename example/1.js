@@ -1,6 +1,3 @@
 console.log("hello fd")
-rpc.exports={
-    add:function(a,b){
-        return a+b
-    }
-}
+
+send({"type":"download","filename":"dd","append":false},new Uint8Array([0x01]).buffer);

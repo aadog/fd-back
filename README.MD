@@ -50,6 +50,11 @@ Run/Debug Configurations
 
 ![](gif/run.gif
 
+下载文件例子:
+```
+send({"type":"download","filename":"dd","append":true},new Uint8Array([0x01]).buffer)
+```
+
 ```
 cd ~/src
 fd create myfrida
