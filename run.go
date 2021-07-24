@@ -75,7 +75,7 @@ func (l *Run) Run(param RunParam) error {
 				}
 				ascs:=strings.Builder{}
 				for _, b := range fbyte {
-					ascs.WriteString(fmt.Sprintf("\\x%x",b))
+					ascs.WriteString(fmt.Sprintf("\\x%02x",b))
 				}
 				boxBuffer.WriteString(fmt.Sprintf(`Box.MapBox.set("%s","%s")`,path,ascs.String()))
 				boxBuffer.WriteByte('\n')
