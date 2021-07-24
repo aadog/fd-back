@@ -1,13 +1,18 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 	jsoniter "github.com/json-iterator/go"
+	"io/fs"
 	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
+	"strings"
+	"sync"
 )
 
 type RunParam struct {
@@ -43,7 +48,50 @@ func (l *Run) Run(param RunParam) error {
 		return err
 	}
 	defer session.Detach()
-	fmt.Println("download file example: send({\"type\":\"download\",\"filename\":\"dd\",\"append\":true},new Uint8Array([0x01]).buffer)")
+	fmt.Println("download file example: send({\"type\":\"download\",\"path\":\"test/test.txt\",\"append\":true},new Uint8Array([0x01]).buffer)")
+
+
+	_,err=os.Stat("./agent/box")
+	if err==nil{
+		tmplatebox,err:=frida_agent_example.ReadFile("frida-agent-example/agent/box.ts")
+		if err!=nil{
+			return err
+		}
+		var boxBuffer bytes.Buffer
+		boxBuffer.Write(tmplatebox)
+		err=filepath.WalkDir("./agent/box", func(fpath string, d fs.DirEntry, err error) error {
+			path:=fpath
+			if d.IsDir()==false&&strings.HasPrefix(path,".")==false{
+				if strings.HasPrefix(path,"."){
+					path=path[1:]
+				}
+				if strings.HasPrefix(path,"agent\\"){
+					path=strings.TrimPrefix(path,"agent\\box\\")
+				}
+				path=strings.ReplaceAll(path,"\\","/")
+				fbyte,err:=ioutil.ReadFile(fpath)
+				if err!=nil{
+					return err
+				}
+				ascs:=strings.Builder{}
+				for _, b := range fbyte {
+					ascs.WriteString(fmt.Sprintf("\\x%x",b))
+				}
+				boxBuffer.WriteString(fmt.Sprintf(`Box.MapBox.set("%s","%s")`,path,ascs.String()))
+				boxBuffer.WriteByte('\n')
+			}
+			return nil
+		})
+		if err!=nil{
+			return err
+		}
+		err=ioutil.WriteFile("./agent/box.ts",boxBuffer.Bytes(),os.ModePerm)
+		if err!=nil{
+			return err
+		}
+	}
+
+
 
 	fd,err:=ioutil.ReadFile(param.JsPath)
 	if err!=nil{
@@ -63,6 +111,9 @@ func (l *Run) Run(param RunParam) error {
 	sc.OnDestroyed(func() {
 		cancel()
 	})
+
+
+	hslk:=sync.Map{}
 	sc.OnMessage(func(sjson jsoniter.Any, data []byte) {
 		tp:=sjson.Get("type").ToString()
 		if tp=="log"{
@@ -74,19 +125,25 @@ func (l *Run) Run(param RunParam) error {
 		}else if tp=="send"{
 			sendtype:=sjson.Get("payload","type").ToString()
 			if sendtype=="download" || sendtype=="down" || sendtype=="downloadfile"{
-				fname:=sjson.Get("payload","filename").ToString()
-				if fname==""{
-					fname=sjson.Get("payload","fname").ToString()
+				fpath:=sjson.Get("payload","path").ToString()
+				if fpath==""{
+					fpath=sjson.Get("payload","path").ToString()
 				}
 				appendfile:=sjson.Get("payload","append").ToBool()
-				if fname==""{
+				if fpath==""{
 					log.Println(sjson.ToString())
 					return
 				}
-				todir:=fmt.Sprintf("./download")
+				iflk,_:=hslk.LoadOrStore(fpath,sync.Mutex{})
+				flk:=iflk.(sync.Mutex)
+				flk.Lock()
+				defer flk.Unlock()
+				toroot:=fmt.Sprintf("./download")
+				sdir,sfilename:=filepath.Split(fpath)
+				todir:=filepath.Join(toroot,sdir)
 				err=os.MkdirAll(todir,os.ModePerm)
 				if err!=nil{
-					log.Println(err.Error())
+				    log.Println(err.Error())
 					return
 				}
 
@@ -94,7 +151,7 @@ func (l *Run) Run(param RunParam) error {
 				if appendfile==true{
 					fg|=os.O_APPEND
 				}
-				f,err:=os.OpenFile(fmt.Sprintf("%s/%s",todir,fname),fg,os.ModePerm)
+				f,err:=os.OpenFile(filepath.Join(todir,sfilename),fg,os.ModePerm)
 				if err!=nil{
 					log.Println(err.Error())
 					return
