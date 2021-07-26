@@ -1,4 +1,4 @@
-## fd windows下frida的调试工具 (单 exe,不需要python和nodejs)
+## fd windows,linux下frida的调试工具 (单 exe,不需要python和nodejs)
 
 #### 现在他只支持USB
 
@@ -32,6 +32,19 @@ fd run _agent.js -name 通讯录
 ### 运行js到设备
 
 ### run _agent.js -name 通讯录
+
+##### * 支持下载文件功能,例如: 
+
+````
+send({"type":"download","path":"test/test.txt","append":true},new Uint8Array([0x01]).buffer);
+````
+
+##### 支持本地资源访问: 把资源放入:agent/box文件夹,可以使用以下代码访问:
+````
+import {Box} from "./box";
+Box.String("1.txt")
+Box.Uint8Array("1.txt")
+````
 
 ```
 cd ~/src
