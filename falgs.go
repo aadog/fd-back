@@ -26,6 +26,7 @@ func entry()error{
 	run_name:=run.String("name","","调试进程名称,比如 通讯录,(lsps的结果中可以看到)")
 	run_jsbyte:=run.Bool("jsbyte",false,"是否使用编译过的js 字节码")
 	run_jspath:=""
+	run_devi:=run.String("devi","","设备")
 
 	compile:=flag.NewFlagSet("compile",flag.ExitOnError)
 	compile.Usage= func() {
@@ -34,14 +35,17 @@ func entry()error{
 	}
 	compile_jspath:=""
 	compile_name:=compile.String("name","","app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)")
+	compile_devi:=compile.String("devi","","设备")
 
 	lsapp:=flag.NewFlagSet("lsapp",flag.ExitOnError)
+	lsapp_devi:=lsapp.String("devi","","设备")
 	lsapp.Usage= func() {
 		fmt.Fprintf(lsapp.Output(), "============== 列出所有application 使用方法:%s\n", "lsapp")
 		lsapp.PrintDefaults()
 	}
 
 	lsps:=flag.NewFlagSet("lsps",flag.ExitOnError)
+	lsps_devi:=lsps.String("devi","","设备")
 	lsps.Usage= func() {
 		fmt.Fprintf(lsps.Output(), "============== 列出所有进程 使用方法:%s\n", "lsps")
 		lsps.PrintDefaults()
@@ -59,6 +63,7 @@ func entry()error{
 	api_name:=api.String("name","","app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)")
 	api_address:=api.String("address",":8080","接口监听地址")
 	api_path:=api.String("path","/call","api监听路径")
+	api_devi:=api.String("devi","","设备")
 
 
 	flag.Usage=func() {
@@ -81,6 +86,7 @@ func entry()error{
 		flag.Usage()
 		return nil
 	}
+
 	cmd:=os.Args[1]
 	switch cmd{
 
@@ -172,10 +178,10 @@ func entry()error{
 		return errors.New("不支持这个命令行")
 	}
 	if lsapp.Parsed(){
-		return NewLsApp().Run()
+		return NewLsApp().Run(LsAppParam{Devi: *lsapp_devi})
 	}
 	if lsps.Parsed(){
-		return NewLsPs().Run()
+		return NewLsPs().Run(LsPsParam{*lsps_devi})
 	}
 	if api.Parsed(){
 
@@ -187,13 +193,13 @@ func entry()error{
 			kd=1
 		}
 
-		return NewApi().Run(ApiParam{ApiType: kd,JsPath: api_jspath,JsByte: *api_jsbyte,Name:*api_name,Address: *api_address,Path: *api_path})
+		return NewApi().Run(ApiParam{ApiType: kd,JsPath: api_jspath,JsByte: *api_jsbyte,Name:*api_name,Address: *api_address,Path: *api_path,Devi: *api_devi})
 	}
 	if compile.Parsed(){
-		return NewCompile().Run(CompileParam{JsPath: compile_jspath,Name:*compile_name})
+		return NewCompile().Run(CompileParam{JsPath: compile_jspath,Name:*compile_name,Devi: *compile_devi})
 	}
 	if run.Parsed(){
-		return NewRun().Run(RunParam{JsPath: run_jspath,Name:*run_name,JsByte: *run_jsbyte})
+		return NewRun().Run(RunParam{JsPath: run_jspath,Name:*run_name,JsByte: *run_jsbyte,Devi: *run_devi})
 	}
 	if create.Parsed(){
 		return NewCreate().Run(CreateParam{Dir: create_dir})

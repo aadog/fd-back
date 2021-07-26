@@ -13,6 +13,7 @@ import (
 type CompileParam struct {
 	Name string
 	JsPath string
+	Devi string
 }
 type Compile struct {
 
@@ -21,9 +22,9 @@ type Compile struct {
 func (l *Compile) Run(param CompileParam) error {
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
-	d,err:=mgr.GetDeviceByType(frida_go.DeviceType_USB,1000)
+	d,err:=ParseDevice(mgr,param.Devi)
 	if err!=nil{
-	    return err
+		return err
 	}
 	sysparam,err:=d.QuerySystemParameters()
 	if err!=nil{

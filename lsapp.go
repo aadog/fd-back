@@ -5,15 +5,20 @@ import (
 	"github.com/a97077088/frida-go"
 	jsoniter "github.com/json-iterator/go"
 )
-
+type LsAppParam struct {
+	Devi string
+	Dir string
+}
 type LsApp struct {
 
 }
 
-func (l *LsApp) Run() error {
+func (l *LsApp) Run(param LsAppParam) error {
+	fmt.Println(param.Devi)
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
-	d,err:=mgr.GetDeviceByType(frida_go.DeviceType_USB,1000)
+
+	d,err:=ParseDevice(mgr,param.Devi)
 	if err!=nil{
 	    return err
 	}

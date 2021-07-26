@@ -19,6 +19,7 @@ type RunParam struct {
 	Name string
 	JsPath string
 	JsByte bool
+	Devi string
 }
 type Run struct {
 
@@ -27,7 +28,7 @@ type Run struct {
 func (l *Run) Run(param RunParam) error {
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
-	d,err:=mgr.GetDeviceByType(frida_go.DeviceType_USB,1000)
+	d,err:=ParseDevice(mgr,param.Devi)
 	if err!=nil{
 		return err
 	}
@@ -42,6 +43,7 @@ func (l *Run) Run(param RunParam) error {
 	if err!=nil{
 		return err
 	}
+
 	fmt.Printf("调试进程:%s 进程id:%d 脚本:%s\n",p.Name(),p.Pid(),param.JsPath)
 	session,err:=d.Attach(p.Pid(),frida_go.SessionOptions{})
 	if err!=nil{

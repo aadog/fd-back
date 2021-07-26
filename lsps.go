@@ -6,14 +6,17 @@ import (
 	jsoniter "github.com/json-iterator/go"
 )
 
+type LsPsParam struct {
+	Devi string
+}
 type LsPs struct {
 
 }
 
-func (l *LsPs) Run() error {
+func (l *LsPs) Run(param LsPsParam) error {
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
-	d,err:=mgr.GetDeviceByType(frida_go.DeviceType_USB,1000)
+	d,err:=ParseDevice(mgr,param.Devi)
 	if err!=nil{
 		return err
 	}

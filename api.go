@@ -18,6 +18,7 @@ type ApiParam struct {
 	Name string
 	Address string
 	Path string
+	Devi string
 }
 
 type Api struct {
@@ -30,7 +31,7 @@ func (l *Api) Run(param ApiParam) error {
 	}
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
-	d,err:=mgr.GetDeviceByType(frida_go.DeviceType_USB,1000)
+	d,err:=ParseDevice(mgr,param.Devi)
 	if err!=nil{
 		return err
 	}
