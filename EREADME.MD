@@ -2,6 +2,12 @@
 
 ## single exe frida debug tool,supper webstorm
 
+supper system :
+    
+- windows x64
+- linux x64
+
+
 #### Now he only supports USB
 
 [简体中文直接点这里](./README.MD)

@@ -2,6 +2,11 @@
 
 ## 单exe frida调试工具,支持webstorm
 
+支持系统 :
+
+- windows x64
+- linux x64
+
 #### 现在他只支持USB
 
 [english click here](./EREADME.MD)
