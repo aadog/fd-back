@@ -1,4 +1,6 @@
-## fd windows,linux下frida的调试工具 (单 exe,不需要python和nodejs)
+## fd
+
+## 单exe frida调试工具,支持webstorm
 
 #### 现在他只支持USB
 
