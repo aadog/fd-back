@@ -3,6 +3,7 @@
   <component name="Go" enabled="true">
     <buildTags>
       <option name="os" value="linux" />
+      <option name="cgo" value="NO" />
     </buildTags>
   </component>
   <component name="NewModuleRootManager">
