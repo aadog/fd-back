@@ -11,7 +11,7 @@ require (
 
 require (
 	github.com/a97077088/dylib v0.0.0-20210726041103-cf42039dadef // indirect
-	github.com/a97077088/libfridabinres v0.0.0-20210726114731-413b2f8388b6 // indirect
+	github.com/a97077088/libfridabinres v0.0.0-20210727051601-2a4bab9190b0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
