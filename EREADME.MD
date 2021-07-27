@@ -8,7 +8,7 @@ supper system :
 - linux x64
 
 
-#### Now he only supports USB
+#### Now supports usb,-devi(local,remote ip) param
 
 [简体中文直接点这里](./README.MD)
 
@@ -19,6 +19,7 @@ supper system :
 
 #### Support List:
 
+- bagbak ipa dump command 
 - create frida-agent-example application
 - run (webstorm debug,It's like development engineering)
 - compile (compile script to byte file)
@@ -27,19 +28,30 @@ supper system :
 - api (export api to http/grpc)
 
 
+### BagBak ipa dump
+
+### bagbak 通讯录
+
+```
+usb: fd bagbak 通讯录
+localhost: fd bagbak 通讯录 -devi local
+remote ip: fd bagbak 通讯录 -devi 127.0.0.1:1234
+```
+
+
 ### create frida-agent-example application
 ```
 cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd run _agent.js -name 通讯录
+fd run agent.js -name 通讯录
 ```
 ![](gif/create.gif)
 
 ### run 
 
-### run _agent.js -name 通讯录
+### run agent.js -name 通讯录
 
 ##### * 支持下载文件功能,例如:
 
@@ -59,7 +71,7 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-webstorm run _agent.js
+webstorm run agent.js
 Run/Debug Configurations 
 1.replace Node interpreter to fd
 2.set Node parameters "run"
@@ -80,7 +92,7 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd run _agent.js -name 通讯录
+fd run agent.js -name 通讯录
 ```
 
 ### compile (compile script to byte file)
@@ -90,7 +102,7 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd compile _agent.js -name 通讯录
+fd compile agent.js -name 通讯录
 New file _agent.compile.js appears in the current directory
 ```
 

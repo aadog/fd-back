@@ -1,6 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"embed"
+	_ "embed"
+	"fmt"
+)
+
+//go:embed scripts/*/*
+var scripts embed.FS
 
 func main() {
 	err:=entry()

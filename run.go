@@ -178,6 +178,8 @@ func (l *Run) Run(param RunParam) error {
 	defer sc.UnLoad()
 
 
+
+
 	<-ctx.Done()
 	fmt.Println("脚本运行完毕")
 	return nil

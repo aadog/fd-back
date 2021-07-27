@@ -7,7 +7,7 @@
 - windows x64
 - linux x64
 
-#### 现在他只支持USB
+#### 现在支持 usb和-devi(local,remote ip) 参数
 
 [english click here](./EREADME.MD)
 
@@ -16,12 +16,23 @@
 
 #### 支持列表:
 
+- 内置了bagbak的ipa脱壳命令,支持最新版frida
 - 创建一个基于 frida-agent-example的typescript工程(拥有完美的智能提示)
 - 使用webstorm进行调试，就像在开发一样,运行,暂停,打印消息
 - 编译脚本为byte code(可以加速,或者加密?)
 - 显示所有app列表
 - 显示所有进程列表
 - 一键导出api为http或者grpc接口来调用
+
+### BagBak 脱壳
+
+### bagbak 通讯录
+
+```
+usb: fd bagbak 通讯录
+本机: fd bagbak 通讯录 -devi local
+远程主机: fd bagbak 通讯录 -devi 127.0.0.1:1234
+```
 
 ### 创建frida工程
 
@@ -31,14 +42,14 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd run _agent.js -name 通讯录
+fd run agent.js -name 通讯录
 ```
 
 ![](gif/create.gif)
 
 ### 运行js到设备
 
-### run _agent.js -name 通讯录
+### run agent.js -name 通讯录
 
 ##### * 支持下载文件功能,例如: 
 
@@ -58,7 +69,7 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-webstorm run _agent.js
+webstorm run agent.js
 Run/Debug Configurations 
 1.replace Node interpreter to fd
 2.set Node parameters "run"
@@ -80,12 +91,12 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd run _agent.js -name 通讯录
+fd run agent.js -name 通讯录
 ```
 
 ### 编译脚本到byte
 
-### compile _agent.js -name 通讯录
+### compile agent.js -name 通讯录
 
 ![](gif/compile.gif)
 
@@ -94,7 +105,7 @@ cd ~/src
 fd create myfrida
 cd myfrida
 npm install
-fd compile _agent.js -name 通讯录
+fd compile agent.js -name 通讯录
 New file _agent.compile.js appears in the current directory
 ```
 

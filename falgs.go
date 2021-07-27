@@ -66,6 +66,15 @@ func entry()error{
 	api_devi:=api.String("devi","","设备")
 
 
+	bagbak:=flag.NewFlagSet("bagbak",flag.ExitOnError)
+	bagbak.Usage= func() {
+		fmt.Fprintf(bagbak.Output(), "============== bagbak(ipa脱壳) 使用方法:%s\n", "bakbag 通讯录")
+		bagbak.PrintDefaults()
+	}
+	bagbak_devi:=bagbak.String("devi","","设备")
+	bagbak_app:=""
+
+
 	flag.Usage=func() {
 		create.Usage()
 		fmt.Fprintln(flag.CommandLine.Output(),"")
@@ -78,6 +87,8 @@ func entry()error{
 		lsps.Usage()
 		fmt.Fprintln(flag.CommandLine.Output(),"")
 		api.Usage()
+		fmt.Fprintln(flag.CommandLine.Output(),"")
+		bagbak.Usage()
 		fmt.Fprintln(flag.CommandLine.Output(),"")
 	}
 
@@ -164,6 +175,20 @@ func entry()error{
 		}
 		create_dir=a2
 		create.Parse(os.Args[3:])
+	case "bagbak":
+		if len(os.Args)<3{
+			fmt.Println("解析名称失败")
+			bagbak.Usage()
+			return nil
+		}
+		a2:=os.Args[2]
+		if a2=="help"||a2=="-help"||a2=="--help"||a2=="-h"||a2=="--h"||strings.HasPrefix(a2,"-"){
+			fmt.Println("解析名称失败")
+			create.Usage()
+			return nil
+		}
+		bagbak_app=a2
+		bagbak.Parse(os.Args[3:])
 	case "help":
 		flag.Usage()
 	case "-h":
@@ -203,6 +228,9 @@ func entry()error{
 	}
 	if create.Parsed(){
 		return NewCreate().Run(CreateParam{Dir: create_dir})
+	}
+	if bagbak.Parsed(){
+		return NewBagBak().Run(BagBakParam{App: bagbak_app,Devi: *bagbak_devi})
 	}
 	return nil
 }

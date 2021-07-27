@@ -60,7 +60,7 @@ func (l *Create) Run(param CreateParam) error {
 	fmt.Println("cd ",param.Dir)
 	fmt.Println("npm install")
 	fmt.Println("npm watch")
-	fmt.Println("run _agent.js")
+	fmt.Println("run agent.js")
 	return nil
 }
 

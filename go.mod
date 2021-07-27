@@ -3,9 +3,9 @@ module fd
 go 1.17
 
 require (
-	github.com/a97077088/frida-go v0.0.0-20210726041713-88e622763eed
+	code.cloudfoundry.org/bytefmt v0.0.0-20210608160410-67692ebc98de
+	github.com/a97077088/frida-go v0.0.0-20210727074114-31f14e05a98a
 	github.com/gin-gonic/gin v1.7.2
-	github.com/jroimartin/gocui v0.4.0
 	github.com/json-iterator/go v1.1.11
 	github.com/unrolled/render v1.4.0
 )
@@ -21,11 +21,8 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
-	github.com/mattn/go-runewidth v0.0.10 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/nsf/termbox-go v1.1.1 // indirect
-	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
