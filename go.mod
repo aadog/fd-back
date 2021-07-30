@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20210608160410-67692ebc98de
-	github.com/a97077088/frida-go v0.0.0-20210727074114-31f14e05a98a
+	github.com/a97077088/frida-go v0.0.0-20210730154620-dc8338320017
 	github.com/gin-gonic/gin v1.7.2
 	github.com/json-iterator/go v1.1.11
 	github.com/unrolled/render v1.4.0
@@ -13,6 +13,7 @@ require (
 require (
 	github.com/a97077088/dylib v0.0.0-20210726041103-cf42039dadef // indirect
 	github.com/a97077088/libfridabinres v0.0.0-20210730113754-7e4118dad053 // indirect
+	github.com/cheggaaa/pb/v3 v3.0.8 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
