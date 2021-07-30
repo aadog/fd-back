@@ -51,6 +51,12 @@ func entry()error{
 		lsps.PrintDefaults()
 	}
 
+	lsdev:=flag.NewFlagSet("lsdev",flag.ExitOnError)
+	lsdev.Usage= func() {
+		fmt.Fprintf(lsdev.Output(), "============== 列出所有设备 使用方法:%s\n", "lsdev")
+		lsdev.PrintDefaults()
+	}
+
 	api:=flag.NewFlagSet("api",flag.ExitOnError)
 	api.Usage= func() {
 		fmt.Fprintf(api.Output(), "============== api导出 使用方法:%s\n", "api 1.js -name 通讯录")
@@ -76,6 +82,8 @@ func entry()error{
 
 
 	flag.Usage=func() {
+		lsdev.Usage()
+		fmt.Fprintln(flag.CommandLine.Output(),"")
 		create.Usage()
 		fmt.Fprintln(flag.CommandLine.Output(),"")
 		run.Usage()
@@ -90,6 +98,7 @@ func entry()error{
 		fmt.Fprintln(flag.CommandLine.Output(),"")
 		bagbak.Usage()
 		fmt.Fprintln(flag.CommandLine.Output(),"")
+
 	}
 
 
@@ -100,7 +109,8 @@ func entry()error{
 
 	cmd:=os.Args[1]
 	switch cmd{
-
+	case "lsdev":
+		lsdev.Parse(os.Args[2:])
 	case "lsapp":
 		lsapp.Parse(os.Args[2:])
 	case "lsps":
@@ -201,6 +211,9 @@ func entry()error{
 		flag.Usage()
 	default:
 		return errors.New("不支持这个命令行")
+	}
+	if lsdev.Parsed(){
+		return NewLsDev().Run(LsDevParam{})
 	}
 	if lsapp.Parsed(){
 		return NewLsApp().Run(LsAppParam{Devi: *lsapp_devi})

@@ -14,7 +14,6 @@ type LsApp struct {
 }
 
 func (l *LsApp) Run(param LsAppParam) error {
-	fmt.Println(param.Devi)
 	mgr:=frida_go.DeviceManager_Create()
 	defer mgr.Close()
 
