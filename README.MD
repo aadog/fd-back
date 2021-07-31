@@ -63,14 +63,14 @@
 ````
 
 #### fd具体功能
-- **fd ios脱壳工具(fd bagbak) [阅读文档](bagbak.md)** **ipa 脱壳,集成了bagbak插件,支持拓展文件脱壳,他不需要ssh  [ChiChou/bagbak](https://github.com/ChiChou/bagbak)**
-- **fd 创建工程(fd create) [阅读文档]()** **创建基于tyescripts的frida-agent-example 工程,拥有完美智能提示 [oleavr/frida-agent-example](https://github.com/oleavr/frida-agent-example)**
-- **fd 导出api(fd api) [阅读文档]()** **轻松导出exports为 http 或 grpc接口调用**
-- **fd 显示app列表(fd lsapp) [阅读文档]()** **显示所有app列表**
-- **fd 显示进程列表(fd lsps) [阅读文档]()** **显示所有进程列表**
-- **fd 显示设备列表(fd lsdev) [阅读文档]()** **显示设备列表**
-- **fd 编译byte(fd compile) [阅读文档]()** **编译脚本为byte code**
-- **fd 运行js(fd run) [阅读文档]()** **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
+- **fd ios脱壳工具(fd bagbak) [阅读图文教程](bagbak.md)** **ipa 脱壳,集成了bagbak插件,支持拓展文件脱壳,他不需要ssh  [ChiChou/bagbak](https://github.com/ChiChou/bagbak)**
+- **fd 创建工程(fd create) [阅读图文教程](create.md)** **创建基于tyescripts的frida-agent-example 工程,拥有完美智能提示 [oleavr/frida-agent-example](https://github.com/oleavr/frida-agent-example)**
+- **fd 导出api(fd api) [阅读图文教程]()** **轻松导出exports为 http 或 grpc接口调用**
+- **fd 显示app列表(fd lsapp) [阅读图文教程](lsapp.md)** **显示所有app列表**
+- **fd 显示进程列表(fd lsps) [阅读图文教程]()** **显示所有进程列表**
+- **fd 显示设备列表(fd lsdev) [阅读图文教程]()** **显示设备列表**
+- **fd 编译byte(fd compile) [阅读图文教程]()** **编译脚本为byte code**
+- **fd 运行js(fd run) [阅读图文教程]()** **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
 
 #### fd 使用了哪些框架:
 - **核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)**
