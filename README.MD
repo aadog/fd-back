@@ -72,6 +72,7 @@
 - **编译脚本为byte code**
 - **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
 
+<<<<<<< HEAD
 #### fd 使用了哪些框架:
 - **核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)**
 - **核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)**
@@ -88,6 +89,24 @@
 * **fd 显示设备列表(fd lsdev) [阅读文档]()**
 * **fd 显示进程列表(fd lsps) [阅读文档]()**
 * **fd 显示app列表(fd lsapp) [阅读文档]()**
+=======
+### fd 使用了哪些框架:
+- #### 核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)
+- #### 核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)
+- #### 跨平台动态库来自 [ying32/dylib],他兼容三个平台的动态库(https://github.com/ying32/dylib)
+- #### tempdll技术提取自 [ying32/govcl],这是一个强大的golang原生ui库
+- #### 使用google开发的 [golang语言](https://golang.org/) 开发
+
+###更多高级技巧:
+* ####fd 创建工程(fd create) [阅读文档]()
+* ####fd 运行js(fd run) [阅读文档]()
+* ####fd ios脱壳工具(fd bagbak) [阅读文档]()
+* ####fd 导出api(fd api) [阅读文档]()
+* ####fd 编译byte(fd compile) [阅读文档]()
+* ####fd 显示设备列表(fd lsdev) [阅读文档]()
+* ####fd 显示进程列表(fd lsps) [阅读文档]()
+* ####fd 显示app列表(fd lsapp) [阅读文档]()
+>>>>>>> ee68cb3a82c725bab4082941c33bcedd29e7ad53
 
 [english click here](./EREADME.MD)
 
