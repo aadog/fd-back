@@ -1,11 +1,11 @@
-![](gif/bagbak.webp)
+![](../gif/compile.webp)
 
-#### bagbak(ipa脱壳) 使用方法:
+#### compile(显示进程列表) 使用方法:
 ````
-bakbag appname -devi string
+compile 1.js -devi string -name string
 ````
 
-#### appname:
+#### name
 - ios is app icon label
 - android is app icon label
 - fd lsapp 获取

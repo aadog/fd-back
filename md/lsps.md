@@ -1,11 +1,9 @@
-![](gif/lsapp.webp)
+![](../gif/lsps.webp)
 
-#### lsapp(显示app列表) 使用方法:
+#### lsps(显示进程列表) 使用方法:
 ````
-lsapp -devi string
+lsps -devi string
 ````
-
-#### local app is emtry
 
 #### devi:
 - default: usb
