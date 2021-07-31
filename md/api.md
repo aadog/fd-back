@@ -31,3 +31,26 @@ api 1.js -devi string -name string
 - -devi localhost(local devi)
 - -devi ip:port(remote device)
 - -devi 1234(devi id)
+
+```
+fd api api.js -name 通讯录 -address :8080
+
+
+POST /call HTTP/1.1
+Host: localhost:8080
+User-Agent: Charles/4.6.1
+Content-Type: text/json
+Content-Length: 63
+
+{
+    "func":"add",
+    "args":[1,2],
+    "timeout":"30s"
+}
+ret:
+{
+	"code": 0,
+	"msg": "操作成功",
+	"data": 3
+}
+```

@@ -70,7 +70,7 @@
 - **fd 显示进程列表(fd lsps) [阅读图文教程](md/lsps.md)** **显示所有进程列表**
 - **fd 显示设备列表(fd lsdev) [阅读图文教程](md/lsdev.md)** **显示设备列表**
 - **fd 编译byte(fd compile) [阅读图文教程](md/compile.md)** **编译脚本为byte code**
-- **fd 运行js(fd run) [阅读图文教程]()** **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
+- **fd 运行js(fd run) [阅读图文教程](md/run.md)** **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
 
 #### fd 使用了哪些框架:
 - **核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)**
@@ -81,174 +81,54 @@
 
 
 
-[english click here](./EREADME.MD)
-
-
-
-### BagBak 脱壳
-
-### bagbak 通讯录
-
-```
-usb: fd bagbak 通讯录
-本机: fd bagbak 通讯录 -devi local
-远程主机: fd bagbak 通讯录 -devi 127.0.0.1:1234
-```
-
-### 创建frida工程
-
-### create frida-agent-example
-```
-cd ~/src
-fd create myfrida
-cd myfrida
-npm install
-fd run agent.js -name 通讯录
-```
-
-![](gif/create.gif)
-
-### 运行js到设备
-
-### run agent.js -name 通讯录
-
-##### * 支持下载文件功能,例如: 
-
-````
-send({"type":"download","path":"test/test.txt","append":true},new Uint8Array([0x01]).buffer);
-````
-
-##### 支持本地资源访问: 把资源放入:agent/box文件夹,可以使用以下代码访问:
-````
-import {Box} from "./box";
-Box.String("1.txt")
-Box.Uint8Array("1.txt")
-````
-
-```
-cd ~/src
-fd create myfrida
-cd myfrida
-npm install
-webstorm run agent.js
-Run/Debug Configurations 
-1.replace Node interpreter to fd
-2.set Node parameters "run"
-3.set Application parameters "-name 通讯录"
-4.Now it's working properly
-```
-
-### run (webstorm debug,It's like development engineering)
-
-![](gif/run.gif
-
-下载文件例子:
-```
-send({"type":"download","filename":"dd","append":true},new Uint8Array([0x01]).buffer)
-```
-
-```
-cd ~/src
-fd create myfrida
-cd myfrida
-npm install
-fd run agent.js -name 通讯录
-```
-
-### 编译脚本到byte
-
-### compile agent.js -name 通讯录
-
-![](gif/compile.gif)
-
-```
-cd ~/src
-fd create myfrida
-cd myfrida
-npm install
-fd compile agent.js -name 通讯录
-New file _agent.compile.js appears in the current directory
-```
-
-### 列出所有设备上的application
-
-### lsapp
-
-```
-fd lsapp
-All applications are now listed
-```
-
-### 列出设备上所有ps
-
-### lsps
-
-```
-fd lsapp
-All process are now listed
-```
-
-### 导出api到http或grpc
-
-### api (export api to http/grpc)
-
-```
-fd api api.js -name 通讯录 -address :8080
-Now you can call the API in a format like the following
-
-
-POST /call HTTP/1.1
-Host: localhost:8081
-User-Agent: Charles/4.6.1
-Content-Type: text/json
-Content-Length: 63
-
-{
-    "func":"add",
-    "args":[1,2],
-    "timeout":"30s"
-}
-ret:
-{
-	"code": 0,
-	"msg": "操作成功",
-	"data": 3
-}
-```
-
-
 ### 运行帮助
 
 ```
 fd --help
 
+============== 列出所有设备 使用方法:lsdev
+
 ============== 创建工程 使用方法:create pdir
 
 ============== 脚本调试 使用方法:run 1.js -name 通讯录
--jsbyte
-是否使用编译过的js 字节码
--name string
-调试进程名称,比如 通讯录,(lsps的结果中可以看到)
+  -devi string
+        设备
+  -jsbyte
+        是否使用编译过的js 字节码
+  -name string
+        调试进程名称,比如 通讯录,(lsps的结果中可以看到)
 
 ============== 脚本编译 使用方法:compile 1.js -name 通讯录
--name string
-app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)
+  -devi string
+        设备
+  -name string
+        app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)
 
 ============== 列出所有application 使用方法:lsapp
+  -devi string
+        设备
 
 ============== 列出所有进程 使用方法:lsps
+  -devi string
+        设备
 
 ============== api导出 使用方法:api 1.js -name 通讯录
--address string
-接口监听地址 (default ":8080")
--grpc
-导出grpc接口(暂时还不支持)
--http
-导出http接口 (default true)
--jsbyte
-是否使用编译过的js 字节码
--name string
-app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)
--path string
-api监听路径 (default "/call")
+  -address string
+        接口监听地址 (default ":8080")
+  -devi string
+        设备
+  -grpc
+        导出grpc接口(暂时还不支持)
+  -http
+        导出http接口 (default true)
+  -jsbyte
+        是否使用编译过的js 字节码
+  -name string
+        app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)
+  -path string
+        api监听路径 (default "/call")
+
+============== bagbak(ipa脱壳) 使用方法:bakbag 通讯录
+  -devi string
+        设备
 ```
