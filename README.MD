@@ -72,7 +72,6 @@
 - **编译脚本为byte code**
 - **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
 
-<<<<<<< HEAD
 #### fd 使用了哪些框架:
 - **核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)**
 - **核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)**
