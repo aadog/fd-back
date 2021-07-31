@@ -26,6 +26,8 @@ github.com/a97077088/libfridabinres v0.0.0-20210731042751-53e47857ba6b h1:os52ph
 github.com/a97077088/libfridabinres v0.0.0-20210731042751-53e47857ba6b/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/a97077088/libfridabinres v0.0.0-20210731045259-c570dd9f8578 h1:+Tc/N76wXGWBWG87Sz/vOr+fgmqv/mFRvN4M8Je1xMs=
 github.com/a97077088/libfridabinres v0.0.0-20210731045259-c570dd9f8578/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
+github.com/a97077088/libfridabinres v0.0.0-20210731063204-bd0ab9fac69b h1:mNp4ezrFHjg17mTWTyaj0/MCnol0F2FD9Ha9JqYNPsg=
+github.com/a97077088/libfridabinres v0.0.0-20210731063204-bd0ab9fac69b/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/cheggaaa/pb/v3 v3.0.8 h1:bC8oemdChbke2FHIIGy9mn4DPJ2caZYQnfbRqwmdCoA=
 github.com/cheggaaa/pb/v3 v3.0.8/go.mod h1:UICbiLec/XO6Hw6k+BHEtHeQFzzBH4i2/qk/ow1EJTA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
