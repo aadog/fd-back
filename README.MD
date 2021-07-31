@@ -1,6 +1,6 @@
 ## fd   
 
-#### a brief introdction
+#### 简要介绍 a brief introdction
 * **English can use chrome translation**
 * **frida runtime (no python required, only a single file)**
 * **frida 运行时(不需要python,只有单一个文件)**
