@@ -4,34 +4,17 @@
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
 
-### 什么是frida:
-- #### 世界顶级全平台逆向动态调试框架
-- #### 使用javascript脚本动态hook,trace本机指令
-- #### 详细文档地址: https://frida.re/
+#### 什么是frida:
+- **世界顶级全平台逆向动态调试框架**
+- **使用javascript脚本动态hook,trace本机指令**
+- **详细文档地址: https://frida.re/**
 
 
 #### 什么是fd:
-- #### 单文件的frida运行时(客户端),他不需要python和nodejs支持,使用golang开发
-- #### 主要作为frida运行时使用,例如导出api
+- **单文件的frida运行时(客户端),他不需要python和nodejs支持,使用golang开发**
+- **主要作为frida运行时使用,例如导出api**
 
-### fd具体功能
-- #### ipa 脱壳,集成了bagbak插件,支持拓展文件脱壳,他不需要ssh  [ChiChou/bagbak](https://github.com/ChiChou/bagbak)
-- #### 创建基于tyescripts的frida-agent-example 工程,拥有完美智能提示 [oleavr/frida-agent-example](https://github.com/oleavr/frida-agent-example)
-- #### 轻松导出exports为 http 或 grpc接口调用
-- #### 显示所有app列表
-- #### 显示所有进程列表
-- #### 显示设备列表
-- #### 编译脚本为byte code
-- #### 集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等
-
-### fd 使用了哪些框架:
-- #### 核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)
-- #### 核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)
-- #### 跨平台动态库来自 [ying32/dylib],他兼容三个平台的动态库(https://github.com/ying32/dylib)
-- #### tempdll技术提取自 [ying32/govcl],这是一个强大的golang原生ui库
-- #### 使用google开发的 [golang语言](https://golang.org/) 开发
-
-### 开始使用
+#### 开始使用
 - #### ios脱壳:
 ````
 1. 打开 Cydia 
@@ -76,6 +59,23 @@
 6.点击webstorm的运行按钮
 //现在他就像在开发应用一样方便调试
 ````
+
+#### fd具体功能
+- **ipa 脱壳,集成了bagbak插件,支持拓展文件脱壳,他不需要ssh  [ChiChou/bagbak](https://github.com/ChiChou/bagbak)**
+- **创建基于tyescripts的frida-agent-example 工程,拥有完美智能提示 [oleavr/frida-agent-example](https://github.com/oleavr/frida-agent-example)**
+- **轻松导出exports为 http 或 grpc接口调用**
+- **显示所有app列表**
+- **显示所有进程列表**
+- **显示设备列表**
+- **编译脚本为byte code**
+- **集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等**
+
+### fd 使用了哪些框架:
+- #### 核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)
+- #### 核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)
+- #### 跨平台动态库来自 [ying32/dylib],他兼容三个平台的动态库(https://github.com/ying32/dylib)
+- #### tempdll技术提取自 [ying32/govcl],这是一个强大的golang原生ui库
+- #### 使用google开发的 [golang语言](https://golang.org/) 开发
 
 ###更多高级技巧:
 * ####fd 创建工程(fd create) [阅读文档]()
