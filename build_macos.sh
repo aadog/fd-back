@@ -1,3 +1,5 @@
+git pull
 go get -u
-go build -ldflags="-s -w" -tags=tempdll
-upx ./fd
+go get github.com/a97077088/libfridabinres@master
+go build -ldflags="-s -w" -tags=tempdll -o fd_macos
+upx ./fd_macos
