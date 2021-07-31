@@ -1,28 +1,95 @@
-## fd
+## fd    frida 运行时(不需要python,只有单一个文件)
 
-## 单exe frida调试工具,支持webstorm
-
-支持系统 :
-
-- windows x64
-- linux x64
-
-#### 现在支持 usb和-devi(local,remote ip) 参数
-
-[english click here](./EREADME.MD)
+##### fd 使用fd前请确认手机上有frida-server
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
 
+### 什么是frida:
+- #### 世界顶级全平台逆向动态调试框架
+- #### 使用javascript脚本动态hook,trace本机指令
+- #### 详细文档地址: https://frida.re/
 
-#### 支持列表:
 
-- 内置了bagbak的ipa脱壳命令,支持最新版frida
-- 创建一个基于 frida-agent-example的typescript工程(拥有完美的智能提示)
-- 使用webstorm进行调试，就像在开发一样,运行,暂停,打印消息
-- 编译脚本为byte code(可以加速,或者加密?)
-- 显示所有app列表
-- 显示所有进程列表
-- 一键导出api为http或者grpc接口来调用
+#### 什么是fd:
+- #### 单文件的frida运行时(客户端),他不需要python和nodejs支持,使用golang开发
+- #### 主要作为frida运行时使用,例如导出api
+
+### fd具体功能
+- #### ipa 脱壳,集成了bagbak插件,支持拓展文件脱壳,他不需要ssh  [ChiChou/bagbak](https://github.com/ChiChou/bagbak)
+- #### 创建基于tyescripts的frida-agent-example 工程,拥有完美智能提示 [oleavr/frida-agent-example](https://github.com/oleavr/frida-agent-example)
+- #### 轻松导出exports为 http 或 grpc接口调用
+- #### 显示所有app列表
+- #### 显示所有进程列表
+- #### 显示设备列表
+- #### 编译脚本为byte code
+- #### 集成webstorm,就像开发工程一样使用frida调试,智能提示,错误报告等
+
+### fd 使用了哪些框架:
+- #### 核心基础部分基于 frida 世界顶级全平台逆向动态调试框架 [项目地址](https://frida.re/)
+- #### 核心部分基于 frida-go 他是纯golang绑定的frida-core客户端 [a97077088/frida-go](https://github.com/a97077088/frida-go)
+- #### 跨平台动态库来自 [ying32/dylib],他兼容三个平台的动态库(https://github.com/ying32/dylib)
+- #### tempdll技术提取自 [ying32/govcl],这是一个强大的golang原生ui库
+- #### 使用google开发的 [golang语言](https://golang.org/) 开发
+
+### 开始使用
+- #### ios脱壳:
+````
+1. 打开 Cydia 
+2. 添加软件源: https://build.frida.re
+3. 搜索: frida 并且安装
+4. 根据系统下载fd: https://github.com/a97077088/fd/releases
+5. 数据线链接到电脑
+6. fd bagbak 通讯录 //通讯录需要手动打开并且置于前台
+//Contacts.app现在出现在你的目录
+````
+
+- #### 安卓显示所有app:
+````
+1. 打开 Magisk 
+2. 安装: MagiskFrida
+3. 根据系统下载fd: https://github.com/a97077088/fd/releases
+4. 数据线链接到电脑
+5. fd lsapp
+//app列表应该显示在你的机器上
+````
+
+- #### 显示本机所有进程:
+````
+1. 根据系统下载fd: https://github.com/a97077088/fd/releases
+2. 数据线链接到电脑
+3. fd lsps -devi=local
+//ps列表应该显示在你的机器上
+````
+
+
+
+- #### 使用webstorm开发:
+````
+1. 根据系统下载fd: https://github.com/a97077088/fd/releases
+2. fd create testproject
+3. cd myfrida
+4.npm install
+5.打开webstorm 点击:Run/Debug Configurations 
+    1.设置 Node interpreter 为 fd
+    2.设置 Node parameters "run"
+    3.设置 Application parameters "-name 通讯录"
+6.点击webstorm的运行按钮
+//现在他就像在开发应用一样方便调试
+````
+
+###更多高级技巧:
+* ####fd 创建工程(fd create) [阅读文档]()
+* ####fd 运行js(fd run) [阅读文档]()
+* ####fd ios脱壳工具(fd bagbak) [阅读文档]()
+* ####fd 导出api(fd api) [阅读文档]()
+* ####fd 编译byte(fd compile) [阅读文档]()
+* ####fd 显示设备列表(fd lsdev) [阅读文档]()
+* ####fd 显示进程列表(fd lsps) [阅读文档]()
+* ####fd 显示app列表(fd lsapp) [阅读文档]()
+
+[english click here](./EREADME.MD)
+
+
 
 ### BagBak 脱壳
 
