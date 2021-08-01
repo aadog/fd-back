@@ -5,13 +5,13 @@
 compile 1.js -devi string -name string
 ````
 
-#### name
+#### -name
 - ios is app icon label
 - android is app icon label
 - fd lsapp 获取
 - 如果获取不到,fd lsps 获取
 
-#### devi:
+#### -devi:
 - default: usb
 - -devi usb(usb devi)
 - -devi u(usb devi)

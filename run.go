@@ -60,7 +60,7 @@ func (l *Run) Run(param RunParam) error {
 		return err
 	}
 	defer session.Detach()
-	fmt.Println("download file example: send({\"type\":\"download\",\"path\":\"test/test.txt\",\"append\":true},new Uint8Array([0x01]).buffer)")
+	//fmt.Println("download file example: send({\"type\":\"download\",\"path\":\"test/test.txt\",\"append\":true},new Uint8Array([0x01]).buffer)")
 
 
 	_,err=os.Stat("./agent/box")

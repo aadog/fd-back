@@ -7,7 +7,7 @@ lsapp -devi string
 
 #### local app is emtry
 
-#### devi:
+#### -devi:
 - default: usb
 - -devi usb(usb devi)
 - -devi u(usb devi)

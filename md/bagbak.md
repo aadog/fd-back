@@ -11,7 +11,7 @@ bakbag appname -devi string
 - fd lsapp 获取
 - 如果获取不到,fd lsps 获取
 
-#### devi:
+#### -devi:
 - default: usb
 - -devi usb(usb devi)
 - -devi u(usb devi)
@@ -19,3 +19,14 @@ bakbag appname -devi string
 - -devi localhost(local devi)
 - -devi ip:port(remote device)
 - -devi 1234(devi id)
+
+#### -pid
+- dump process id (appname or pid)
+- The PID mode should support Mac OS
+- PID mode should support system libraries, such as WebKit
+
+example:
+````
+bagbak -pid 123 -devi string
+````
+

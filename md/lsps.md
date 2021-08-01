@@ -5,7 +5,7 @@
 lsps -devi string
 ````
 
-#### devi:
+#### -devi:
 - default: usb
 - -devi usb(usb devi)
 - -devi u(usb devi)
