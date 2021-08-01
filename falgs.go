@@ -27,6 +27,7 @@ func entry()error{
 	run_jsbyte:=run.Bool("jsbyte",false,"是否使用编译过的js 字节码")
 	run_jspath:=""
 	run_devi:=run.String("devi","","设备")
+	run_pid:=run.Uint("pid",0,"进程pid")
 
 	compile:=flag.NewFlagSet("compile",flag.ExitOnError)
 	compile.Usage= func() {
@@ -79,6 +80,7 @@ func entry()error{
 	}
 	bagbak_devi:=bagbak.String("devi","","设备")
 	bagbak_app:=""
+	bagbak_pid:=bagbak.Uint("pid",0,"进程id")
 
 
 	flag.Usage=func() {
@@ -166,8 +168,8 @@ func entry()error{
 		}
 		run_jspath=a2
 		run.Parse(os.Args[3:])
-		if *run_name==""{
-			fmt.Println("name参数解析失败")
+		if *run_name==""&&*run_pid==0{
+			fmt.Println("name参数,和pid同时解析失败")
 			run.Usage()
 			return nil
 		}
@@ -191,14 +193,18 @@ func entry()error{
 			bagbak.Usage()
 			return nil
 		}
-		a2:=os.Args[2]
-		if a2=="help"||a2=="-help"||a2=="--help"||a2=="-h"||a2=="--h"||strings.HasPrefix(a2,"-"){
-			fmt.Println("解析名称失败")
-			create.Usage()
-			return nil
+		if strings.HasPrefix(os.Args[2],"-"){
+			bagbak.Parse(os.Args[2:])
+		}else{
+			a2:=os.Args[2]
+			if a2=="help"||a2=="-help"||a2=="--help"||a2=="-h"||a2=="--h"||strings.HasPrefix(a2,"-"){
+				fmt.Println("解析名称失败")
+				create.Usage()
+				return nil
+			}
+			bagbak_app=a2
+			bagbak.Parse(os.Args[3:])
 		}
-		bagbak_app=a2
-		bagbak.Parse(os.Args[3:])
 	case "help":
 		flag.Usage()
 	case "-h":
@@ -237,13 +243,13 @@ func entry()error{
 		return NewCompile().Run(CompileParam{JsPath: compile_jspath,Name:*compile_name,Devi: *compile_devi})
 	}
 	if run.Parsed(){
-		return NewRun().Run(RunParam{JsPath: run_jspath,Name:*run_name,JsByte: *run_jsbyte,Devi: *run_devi})
+		return NewRun().Run(RunParam{JsPath: run_jspath,Name:*run_name,JsByte: *run_jsbyte,Devi: *run_devi,Pid:*run_pid})
 	}
 	if create.Parsed(){
 		return NewCreate().Run(CreateParam{Dir: create_dir})
 	}
 	if bagbak.Parsed(){
-		return NewBagBak().Run(BagBakParam{App: bagbak_app,Devi: *bagbak_devi})
+		return NewBagBak().Run(BagBakParam{App: bagbak_app,Devi: *bagbak_devi,Pid:*bagbak_pid})
 	}
 	return nil
 }

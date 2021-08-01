@@ -16,6 +16,7 @@ import (
 )
 
 type RunParam struct {
+	Pid uint
 	Name string
 	JsPath string
 	JsByte bool
@@ -39,13 +40,22 @@ func (l *Run) Run(param RunParam) error {
 	jssys:=jsoniter.Wrap(sysparam)
 	jsos:=jssys.Get("os")
 	fmt.Printf("内核平台:%s cpu构架:%s 当前系统:%s(%s)  设备名称:%s 权限:%s \n",jssys.Get("platform").ToString(),jssys.Get("arch").ToString(),jsos.Get(1).Get("id").ToString(),jsos.Get(0).Get("version").ToString(),jssys.Get("name").ToString(),jssys.Get("access").ToString())
-	p,err:=d.GetProcessByName(param.Name,frida_go.ProcessMatchOptions{})
-	if err!=nil{
-		return err
+
+	var pid uint
+	if param.Pid==0{
+		p,err:=d.GetProcessByName(param.Name,frida_go.ProcessMatchOptions{})
+		if err!=nil{
+			return err
+		}
+		fmt.Printf("调试进程:%s 进程id:%d 脚本:%s\n",p.Name(),p.Pid(),param.JsPath)
+		pid=p.Pid()
+	}else{
+		pid=param.Pid
+		fmt.Printf("进程id:%d 脚本:%s\n",pid,param.JsPath)
 	}
 
-	fmt.Printf("调试进程:%s 进程id:%d 脚本:%s\n",p.Name(),p.Pid(),param.JsPath)
-	session,err:=d.Attach(p.Pid(),frida_go.SessionOptions{})
+
+	session,err:=d.Attach(pid,frida_go.SessionOptions{})
 	if err!=nil{
 		return err
 	}

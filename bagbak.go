@@ -14,6 +14,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"sync"
 )
 
@@ -29,6 +30,7 @@ type BagBakDownloadInfo struct {
 }
 
 type BagBakParam struct {
+	Pid uint
 	App  string
 	Devi string
 }
@@ -38,6 +40,9 @@ type BagBak struct {
 func (b *BagBak) ParseFilePath(fpath string) string {
 	re := regexp.MustCompile(`/var/containers/Bundle/Application/.*?/(.*?.app/.*?)`)
 	fname := re.ReplaceAllString(fpath, "$1")
+	if strings.HasPrefix(fname,"/"){
+		fname=fmt.Sprintf(".%s",fname)
+	}
 	return fname
 }
 func (b *BagBak) ack(sc *frida_go.Script) {
@@ -54,24 +59,29 @@ func (l *BagBak) Run(param BagBakParam) error {
 	if err != nil {
 		return err
 	}
-	var execapp *frida_go.ApplicationDetails
-	for _, app := range as {
-		if app.Name() == param.App {
-			execapp = app
-		}
-	}
-	if param.App == "" || execapp == nil {
-		fmt.Println("app list:")
+
+	if param.Pid==0{
+		var execapp *frida_go.ApplicationDetails
 		for _, app := range as {
-			fmt.Println(app.Description())
+			if app.Name() == param.App {
+				execapp = app
+			}
+		}
+		if param.App == "" || execapp == nil {
+			fmt.Println("app list:")
+			for _, app := range as {
+				fmt.Println(app.Description())
+			}
+		}
+		if param.App == "" {
+			return errors.New("没有指定要dump得app名称")
+		}
+		if execapp == nil {
+			fmt.Println(fmt.Sprintf("获取app失败:%s", param.App))
 		}
 	}
-	if param.App == "" {
-		return errors.New("没有指定要dump得app名称")
-	}
-	if execapp == nil {
-		return errors.New(fmt.Sprintf("获取app失败:%s", param.App))
-	}
+
+
 	sysparam, err := d.QuerySystemParameters()
 	if err != nil {
 		return err
@@ -80,12 +90,18 @@ func (l *BagBak) Run(param BagBakParam) error {
 	jsos := jssys.Get("os")
 	fmt.Printf("内核平台:%s cpu构架:%s 当前系统:%s(%s)  设备名称:%s 权限:%s \n", jssys.Get("platform").ToString(), jssys.Get("arch").ToString(), jsos.Get(1).Get("id").ToString(), jsos.Get(0).Get("version").ToString(), jssys.Get("name").ToString(), jssys.Get("access").ToString())
 
-	p, err := d.GetProcessByName(param.App, frida_go.ProcessMatchOptions{})
-	if err != nil {
-		return err
+	var pid uint
+	if param.Pid==0{
+		p, err:= d.GetProcessByName(param.App, frida_go.ProcessMatchOptions{})
+		if err != nil {
+			return err
+		}
+		pid=p.Pid()
+	}else{
+		pid= param.Pid
 	}
 
-	session, err := d.Attach(p.Pid(), frida_go.SessionOptions{})
+	session, err := d.Attach(pid, frida_go.SessionOptions{})
 	if err != nil {
 		return err
 	}
