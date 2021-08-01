@@ -21,11 +21,11 @@ bakbag appname -devi string
 - -devi 1234(devi id)
 
 #### -pid
-- dump process id (appname or pid)
-- The PID mode should support Mac OS
-- PID mode should support system libraries, such as WebKit
+- 要脱壳的 process id (appname or pid)
+- pid模式应该支持macos
+- pid模式应该支持系统库，比如webkit
 
-example:
+pid 例子:
 ````
 bagbak -pid 123 -devi string
 ````
