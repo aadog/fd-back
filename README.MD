@@ -1,10 +1,12 @@
 ## fd   
 
 #### 简要介绍 a brief introdction
+* **要是你看不懂中文可以使用chrome翻译功能**
 * **English can use chrome translation**
-* **frida runtime (no python required, only a single file)**
 * **frida 运行时(不需要python,只有单一个文件)**
+* **frida runtime (no python required, only a single file)**
 * **fd 使用fd前请确认手机上有frida-server**
+* **fd need you phone require frida-server**
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
 
@@ -19,6 +21,10 @@
 #### 什么是fd:
 - **单文件的frida运行时(客户端),他不需要python和nodejs支持,使用golang开发**
 - **主要作为frida运行时使用,例如导出api**
+- **fd支持 远程主机,指定devi,frida中的-H功能,相信查看文档[阅读图文教程](md/bagbak.md)**
+- **fd内置了ios脱壳工具bagbak,详细查看文档[阅读图文教程](md/bagbak.md)**
+- **fd 支持在webstorm中直接开发，详细查看文档[阅读图文教程](md/run.md)**
+- **fd 支持 api 一键导出http接口 详细查看文档[阅读图文教程](md/api.md)**
 
 #### 开始使用
 - #### ios脱壳:
@@ -101,6 +107,8 @@ fd --help
         是否使用编译过的js 字节码
   -name string
         调试进程名称,比如 通讯录,(lsps的结果中可以看到)
+  -pid uint
+        进程pid
 
 ============== 脚本编译 使用方法:compile 1.js -name 通讯录
   -devi string
@@ -135,4 +143,6 @@ fd --help
 ============== bagbak(ipa脱壳) 使用方法:bakbag 通讯录
   -devi string
         设备
+  -pid uint
+        进程id
 ```
