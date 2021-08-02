@@ -1,11 +1,13 @@
 ## fd   
 
-#### 简要介绍 a brief introdction
+#### 简要介绍 
 * **要是你看不懂中文可以使用chrome翻译功能**
-* **English can use chrome translation**
 * **frida 运行时(不需要python,只有单一个文件)**
-* **frida runtime (no python required, only a single file)**
 * **fd 使用fd前请确认手机上有frida-server**
+
+#### a brief introdction
+* **English can use chrome translation**
+* **frida runtime (no python required, only a single file)**
 * **fd need you phone require frida-server**
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
