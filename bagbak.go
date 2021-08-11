@@ -193,7 +193,7 @@ func (l *BagBak) Run(param BagBakParam) error {
 					if err != nil {
 						panic(err)
 					}
-					f, err := os.OpenFile(filename, os.O_CREATE, os.FileMode(stat.Get("mode").ToInt()))
+					f, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY, os.FileMode(stat.Get("mode").ToInt()))
 					if err != nil {
 						panic(err)
 					}
