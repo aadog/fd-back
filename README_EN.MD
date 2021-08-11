@@ -3,11 +3,17 @@
 #### 简要介绍
 * **frida 运行时(不需要python,只有单一个文件)**
 * **fd 使用fd前请确认手机上有frida-server**
+* **优雅的使用webstorm开发(拥有智能完美的智能提示,内置了一些调试库) **
 
 #### a brief introdction
 * **[中文文档点击这里](README_EN.MD)**
 * **frida runtime (no python required, only a single file)**
 * **fd need you phone require frida-server**
+* **Elegant use of webstorm development (with smart and perfect smart tips, some built-in debugging libraries) **
+* ** ** *
+
+
+![](gif/run.webp)
 
 #### [Precompiled binaries can be downloaded here](https://github.com/a97077088/fd/releases)
 

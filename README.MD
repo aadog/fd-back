@@ -4,6 +4,10 @@
 * **要是你看不懂中文可以使用chrome翻译功能**
 * **frida 运行时(不需要python,只有单一个文件)**
 * **fd 使用fd前请确认手机上有frida-server**
+* **优雅的使用webstorm开发(拥有智能完美的智能提示,内置了一些调试库) **
+* **支持资源嵌入,CModule嵌入 **
+
+![](gif/run.webp)
 
 #### a brief introdction
 * **English can use chrome translation or [click english doc](README_EN.MD)**
