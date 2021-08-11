@@ -6,7 +6,7 @@
 * **fd 使用fd前请确认手机上有frida-server**
 
 #### a brief introdction
-* **English can use chrome translation**
+* **English can use chrome translation or [click english doc](README_EN.MD)**
 * **frida runtime (no python required, only a single file)**
 * **fd need you phone require frida-server**
 
