@@ -1,9 +1,31 @@
 package main
 
 import (
+	"errors"
+	"flag"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 )
+
+
+
+var FlagLsDev =flag.NewFlagSet("lsdev",flag.ExitOnError)
+func init(){
+	FlagLsDev.Usage= func() {
+		fmt.Fprintf(FlagLsDev.Output(), "============== 列出所有设备 使用方法:%s\n", "lsdev")
+		FlagLsDev.PrintDefaults()
+	}
+}
+
+func FlagLsDevMain(args []string)error{
+	FlagLsDev.Parse(args)
+	if FlagLsApp.Parsed(){
+		return NewLsDev().Run(LsDevParam{})
+	}
+	return errors.New("lsdev命令解析失败")
+}
+
+
 
 type LsDevParam struct {
 

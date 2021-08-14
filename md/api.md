@@ -3,6 +3,17 @@
 #### api(导出api) 使用方法:
 ````
 api 1.js -devi string -name string
+
+example:
+
+1. api 1.js -name 通讯录
+
+2. api 1.js -name 通讯录 -jsbyte
+
+3. api 1.js -name 通讯录 -address ":1234"
+
+3. api 1.js -name 通讯录 -devi local
+
 ````
 
 #### -path

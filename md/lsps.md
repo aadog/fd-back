@@ -3,6 +3,13 @@
 #### lsps(显示进程列表) 使用方法:
 ````
 lsps -devi string
+
+example:
+
+1. fd lsps
+
+2. fd lsps -devi local
+
 ````
 
 #### -devi:

@@ -1,10 +1,30 @@
 package main
 
 import (
+	"errors"
+	"flag"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 	jsoniter "github.com/json-iterator/go"
 )
+
+var param_lsps_devi= FlagLsPs.String("devi","","设备")
+var FlagLsPs =flag.NewFlagSet("lsps",flag.ExitOnError)
+func init(){
+	FlagLsPs.Usage= func() {
+		fmt.Fprintf(FlagLsPs.Output(), "============== 列出所有进程 使用方法:%s\n", "lsps")
+		FlagLsPs.PrintDefaults()
+	}
+}
+
+func FlagLsPsMain(args []string)error{
+
+	FlagLsPs.Parse(args)
+	if FlagLsApp.Parsed() {
+		return NewLsPs().Run(LsPsParam{*param_lsps_devi})
+	}
+	return errors.New("lsps命令解析失败")
+}
 
 type LsPsParam struct {
 	Devi string

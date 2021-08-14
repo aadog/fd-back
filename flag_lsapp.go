@@ -1,10 +1,29 @@
 package main
 
 import (
+	"errors"
+	"flag"
 	"fmt"
 	"github.com/a97077088/frida-go"
 	jsoniter "github.com/json-iterator/go"
 )
+var param_lsapp_devi= FlagLsApp.String("devi","","设备")
+var FlagLsApp =flag.NewFlagSet("lsapp",flag.ExitOnError)
+func init(){
+	FlagLsApp.Usage= func() {
+		fmt.Fprintf(FlagLsApp.Output(), "============== 列出所有application 使用方法:%s\n", "lsapp")
+		FlagLsApp.PrintDefaults()
+	}
+}
+
+func FlagLsAppMain(args []string)error{
+	FlagLsApp.Parse(args)
+	if FlagLsApp.Parsed(){
+		return NewLsApp().Run(LsAppParam{Devi: *param_lsapp_devi})
+	}
+	return errors.New("lsapp命令解析失败")
+}
+
 type LsAppParam struct {
 	Devi string
 	Dir string

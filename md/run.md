@@ -1,17 +1,34 @@
 ![](../gif/run.webp)
 
+#### 如果进程不存在，并且是Applicatoin,那么将以spawn模式启动
+
 #### run(运行js在webstorm中) 使用方法:
 ````
 run 1.js -devi string -name string
+
+example:
+
+1. fd run 1.js -name 通讯录
+
+2. fd run 1.js -name 通讯录 -jsbyte
+
+3. fd run 1.js -name 通讯录 -devi local
+
 ````
 
+
+#### -restart
+- bool 重启进程,并以spawn模式注入
 
 #### -jsbyte
 - bool 是否使用编译过的js
 
+#### -pid
+- processId
+
 #### -name
-- ios is app icon label
-- android is app icon label
+- ios is appLabel or Identifier or ProcessName
+- ios is appLabel or Identifier or ProcessName
 - fd lsapp 获取
 - 如果获取不到,fd lsps 获取
 

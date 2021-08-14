@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 	"github.com/gin-gonic/gin"
@@ -10,6 +11,53 @@ import (
 	"io/ioutil"
 	"time"
 )
+
+
+var FlagApi =flag.NewFlagSet("api",flag.ExitOnError)
+
+var param_api_http=FlagApi.Bool("http",true,"导出http接口")
+var param_api_grpc=FlagApi.Bool("grpc",false,"导出grpc接口(暂时还不支持)")
+var param_api_jsbyte=FlagApi.Bool("jsbyte",false,"是否使用编译过的js 字节码")
+var param_api_name=FlagApi.String("name","","app屏幕上看到的名字,比如 通讯录,(lsps的结果中可以看到)")
+var param_api_address=FlagApi.String("address",":8080","接口监听地址")
+var param_api_path=FlagApi.String("path","/call","api监听路径")
+var param_api_devi=FlagApi.String("devi","","设备")
+
+func init(){
+	FlagApi.Usage= func() {
+		fmt.Fprintf(FlagApi.Output(), "============== api导出 使用方法:%s\n", "api 1.js -name 通讯录")
+		FlagApi.PrintDefaults()
+	}
+}
+
+func FlagApiMain(args []string)error{
+	if len(args)<1{
+		fmt.Println("解析js文件失败")
+		FlagApi.Usage()
+		return nil
+	}
+	api_jspath:=args[0]
+	FlagApi.Parse(args[1:])
+	if *param_api_name==""{
+		fmt.Println("name参数解析失败")
+		FlagApi.Usage()
+		return nil
+	}
+
+	if FlagApi.Parsed(){
+
+		kd:=0
+		if *param_api_http{
+			kd=0
+		}
+		if *param_api_grpc{
+			kd=1
+		}
+
+		return NewApi().Run(ApiParam{ApiType: kd,JsPath: api_jspath,JsByte: *param_api_jsbyte,Name:*param_api_name,Address: *param_api_address,Path: *param_api_path,Devi: *param_api_devi})
+	}
+	return errors.New("api命令解析失败")
+}
 
 type ApiParam struct {
 	ApiType int

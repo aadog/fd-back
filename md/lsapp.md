@@ -3,6 +3,12 @@
 #### lsapp(显示app列表) 使用方法:
 ````
 lsapp -devi string
+
+example:
+
+1. fd lsapp
+
+2. fd lsapp -devi local
 ````
 
 #### local app is emtry

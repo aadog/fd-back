@@ -1,12 +1,12 @@
 ## fd   
 
 #### 简要介绍
+* **[中文文档点击这里](README.MD)**
 * **frida 运行时(不需要python,只有单一个文件)**
 * **fd 使用fd前请确认手机上有frida-server**
 * **优雅的使用webstorm开发(拥有智能完美的智能提示,内置了一些调试库) **
 
 #### a brief introdction
-* **[中文文档点击这里](README_EN.MD)**
 * **frida runtime (no python required, only a single file)**
 * **fd need you phone require frida-server**
 * **Elegant use of webstorm development (with smart and perfect smart tips, some built-in debugging libraries) **
@@ -42,6 +42,7 @@
 4. Download according to the system fd,(windows or linux or macos?): https://github.com/a97077088/fd/releases
 5. Data cable link to computer
 6. shell (The address book needs to be opened manually and placed in the front desk):fd bagbak 通讯录
+7. or: fd bagbak com.apple.MobileAddressBook
 //dump file:Contacts.app Now it appears in your directory
 ````
 

@@ -3,6 +3,11 @@
 #### create(创建工程) 使用方法:
 ````
 create dir
+
+example:
+
+1. fd create fridaTest
+
 ````
 
 #### dir:

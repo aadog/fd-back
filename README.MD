@@ -1,7 +1,7 @@
 ## fd   
 
 #### 简要介绍 
-* **要是你看不懂中文可以使用chrome翻译功能**
+* **English can use chrome translation or [click english doc](README_EN.MD)**
 * **frida 运行时(不需要python,只有单一个文件)**
 * **fd 使用fd前请确认手机上有frida-server**
 * **优雅的使用webstorm开发(拥有智能完美的智能提示,内置了一些调试库) **
@@ -10,7 +10,6 @@
 ![](gif/run.webp)
 
 #### a brief introdction
-* **English can use chrome translation or [click english doc](README_EN.MD)**
 * **frida runtime (no python required, only a single file)**
 * **fd need you phone require frida-server**
 
@@ -40,7 +39,8 @@
 3. 搜索: frida 并且安装
 4. 根据系统下载fd: https://github.com/a97077088/fd/releases
 5. 数据线链接到电脑
-6. fd bagbak 通讯录 //通讯录需要手动打开并且置于前台
+6. fd bagbak 通讯录 //通讯录需要手动打开并且置于前台,fd仅以附加模式工作
+7. 或者: fd bagbak com.apple.MobileAddressBook //通讯录需要手动打开并且置于前台,fd仅以附加模式工作
 //Contacts.app现在出现在你的目录
 ````
 

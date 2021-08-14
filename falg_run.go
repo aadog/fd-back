@@ -3,6 +3,8 @@ package main
 import (
 	"bytes"
 	"context"
+	"errors"
+	"flag"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 	jsoniter "github.com/json-iterator/go"
@@ -15,12 +17,50 @@ import (
 	"sync"
 )
 
+var param_run_name= FlagRun.String("name","","调试进程名称,比如 通讯录,(lsps的结果中可以看到)")
+var param_run_pid= FlagRun.Uint("pid",0,"进程pid")
+var param_run_jsbyte= FlagRun.Bool("jsbyte",false,"是否使用编译过的js 字节码")
+var param_run_devi= FlagRun.String("devi","","设备")
+var param_run_restart=FlagRun.Bool("restart",false,"restart app")
+var FlagRun =flag.NewFlagSet("run",flag.ExitOnError)
+func init(){
+	FlagRun.Usage= func() {
+		fmt.Fprintf(FlagRun.Output(), "============== 脚本调试 使用方法:%s\n", "run 1.js -name 通讯录")
+		FlagRun.PrintDefaults()
+	}
+}
+
+func FlagRunMain(args []string)error{
+
+
+
+	if len(args)<1{
+		fmt.Println("解析js文件失败")
+		FlagRun.Usage()
+		return nil
+	}
+	a1:=args[0]
+	param_jspath:=a1
+	FlagRun.Parse(args[1:])
+	if *param_run_name==""&&*param_run_pid==0{
+		fmt.Println("name参数,和pid同时解析失败")
+		FlagRun.Usage()
+		return nil
+	}
+	if FlagRun.Parsed(){
+		return NewRun().Run(RunParam{JsPath: param_jspath,Name:*param_run_name,JsByte: *param_run_jsbyte,Devi: *param_run_devi,Pid:*param_run_pid,ReStart: *param_run_restart})
+	}
+	return errors.New("run命令解析失败")
+}
+
+
 type RunParam struct {
 	Pid uint
 	Name string
 	JsPath string
 	JsByte bool
 	Devi string
+	ReStart bool
 }
 type Run struct {
 
@@ -41,17 +81,42 @@ func (l *Run) Run(param RunParam) error {
 	jsos:=jssys.Get("os")
 	fmt.Printf("内核平台:%s cpu构架:%s 当前系统:%s(%s)  设备名称:%s 权限:%s \n",jssys.Get("platform").ToString(),jssys.Get("arch").ToString(),jsos.Get(1).Get("id").ToString(),jsos.Get(0).Get("version").ToString(),jssys.Get("name").ToString(),jssys.Get("access").ToString())
 
-	var pid uint
-	if param.Pid==0{
-		p,err:=d.GetProcessByName(param.Name,frida_go.ProcessMatchOptions{})
+	var app *frida_go.ApplicationDetails
+	pid:=param.Pid
+
+	if pid==0{
+		app,pid,err=GetName(d,param.Name)
 		if err!=nil{
-			return err
+		    return err
 		}
-		fmt.Printf("调试进程:%s 进程id:%d 脚本:%s\n",p.Name(),p.Pid(),param.JsPath)
-		pid=p.Pid()
 	}else{
-		pid=param.Pid
 		fmt.Printf("进程id:%d 脚本:%s\n",pid,param.JsPath)
+	}
+
+
+
+
+	spawnCtx,resumeOK:=context.WithCancel(context.TODO())
+	if app==nil{
+		fmt.Printf("进程id:%d 脚本:%s\n",pid,param.JsPath)
+	}else{
+		if param.ReStart{
+			d.Kill(pid)
+			pid=0
+		}
+		if pid==0{
+			pid,err=d.Spawn(app.Identifier(),frida_go.SpawnOptions{})
+			if err!=nil{
+				return err
+			}
+			go func() {
+				select {
+				case <-spawnCtx.Done():
+					d.Resume(pid)
+				}
+			}()
+		}
+		fmt.Printf("调试进程:%s 进程id:%d 脚本:%s\n",app.Name(),pid,param.JsPath)
 	}
 
 
@@ -61,8 +126,6 @@ func (l *Run) Run(param RunParam) error {
 	}
 	defer session.Detach()
 	//fmt.Println("download file example: send({\"type\":\"download\",\"path\":\"test/test.txt\",\"append\":true},new Uint8Array([0x01]).buffer)")
-
-
 	_,err=os.Stat("./agent/box")
 	if err==nil{
 		tmplatebox,err:=frida_agent_example.ReadFile("frida-agent-example/agent/box.ts")
@@ -102,9 +165,6 @@ func (l *Run) Run(param RunParam) error {
 			return err
 		}
 	}
-
-
-
 	fd,err:=ioutil.ReadFile(param.JsPath)
 	if err!=nil{
 		return err
@@ -186,6 +246,7 @@ func (l *Run) Run(param RunParam) error {
 	    return err
 	}
 	defer sc.UnLoad()
+	resumeOK()
 
 
 

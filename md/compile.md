@@ -3,6 +3,11 @@
 #### compile(显示进程列表) 使用方法:
 ````
 compile 1.js -devi string -name string
+
+example:
+
+1. fd compile 1.js -name 通讯录
+
 ````
 
 #### -name

@@ -5,6 +5,7 @@ import (
 	"context"
 	_ "embed"
 	"errors"
+	"flag"
 	"fmt"
 	frida_go "github.com/a97077088/frida-go"
 	"github.com/cheggaaa/pb/v3"
@@ -17,6 +18,35 @@ import (
 	"strings"
 	"sync"
 )
+
+var bagbak_devi=FlagBagBak.String("devi","","设备")
+var bagbak_pid=FlagBagBak.Uint("pid",0,"进程id")
+var FlagBagBak =flag.NewFlagSet("bagbak",flag.ExitOnError)
+func init(){
+	FlagBagBak.Usage= func() {
+		fmt.Fprintf(FlagBagBak.Output(), "============== bagbak(ipa脱壳) 使用方法:%s\n", "bakbag 通讯录")
+		FlagBagBak.PrintDefaults()
+	}
+}
+func FlagBagBakMain(args[] string)error{
+	if len(args)<1{
+		fmt.Println("解析名称失败")
+		FlagBagBak.Usage()
+		return nil
+	}
+	bagbak_app:=""
+	if strings.HasPrefix(args[0],"-")==false{
+		bagbak_app=args[0]
+		FlagBagBak.Parse(args[1:])
+	}else{
+		FlagBagBak.Parse(args[2:])
+	}
+	if FlagBagBak.Parsed(){
+		return NewBagBak().Run(BagBakParam{App: bagbak_app,Devi: *bagbak_devi,Pid:*bagbak_pid})
+	}
+	return errors.New("bagbak命令解析失败")
+}
+
 
 type BagBakMemcpyInfo struct {
 	Bytes []byte
@@ -60,11 +90,13 @@ func (l *BagBak) Run(param BagBakParam) error {
 		return err
 	}
 
+	var pid uint
 	if param.Pid==0{
 		var execapp *frida_go.ApplicationDetails
 		for _, app := range as {
-			if app.Name() == param.App {
+			if app.Name() == param.App ||app.Identifier()==param.App{
 				execapp = app
+				pid= uint(execapp.Pid())
 			}
 		}
 		if param.App == "" || execapp == nil {
@@ -79,6 +111,9 @@ func (l *BagBak) Run(param BagBakParam) error {
 		if execapp == nil {
 			fmt.Println(fmt.Sprintf("获取app失败:%s", param.App))
 		}
+		if pid==0{
+			return errors.New(fmt.Sprintf("查找 应用名称:[%s] 或 包名:[%s] 的进程失败(fd仅以附加模式工作),确认是否已在手机上打开",param.App,param.App))
+		}
 	}
 
 
@@ -89,17 +124,6 @@ func (l *BagBak) Run(param BagBakParam) error {
 	jssys := jsoniter.Wrap(sysparam)
 	jsos := jssys.Get("os")
 	fmt.Printf("内核平台:%s cpu构架:%s 当前系统:%s(%s)  设备名称:%s 权限:%s \n", jssys.Get("platform").ToString(), jssys.Get("arch").ToString(), jsos.Get(1).Get("id").ToString(), jsos.Get(0).Get("version").ToString(), jssys.Get("name").ToString(), jssys.Get("access").ToString())
-
-	var pid uint
-	if param.Pid==0{
-		p, err:= d.GetProcessByName(param.App, frida_go.ProcessMatchOptions{})
-		if err != nil {
-			return err
-		}
-		pid=p.Pid()
-	}else{
-		pid= param.Pid
-	}
 
 	session, err := d.Attach(pid, frida_go.SessionOptions{})
 	if err != nil {

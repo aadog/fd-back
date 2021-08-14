@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"embed"
 	"errors"
+	"flag"
 	"fmt"
 	"io/fs"
 	"os"
@@ -11,6 +12,30 @@ import (
 )
 //go:embed frida-agent-example
 var frida_agent_example embed.FS
+
+
+var FlagCreate =flag.NewFlagSet("create",flag.ExitOnError)
+func init(){
+	FlagCreate.Usage= func() {
+		fmt.Fprintf(FlagCreate.Output(), "============== 创建工程 使用方法:%s\n", "create pdir")
+		FlagCreate.PrintDefaults()
+	}
+}
+
+func FlagCreateMain(args []string)error{
+	if len(args)<1{
+		fmt.Println("解析目录失败")
+		FlagCreate.Usage()
+		return nil
+	}
+	create_dir:=args[0]
+	FlagCreate.Parse(args[1:])
+	if FlagCreate.Parsed(){
+		return NewCreate().Run(CreateParam{Dir: create_dir})
+	}
+	return errors.New("create命令解析失败")
+}
+
 
 type CreateParam struct {
 	Dir string
