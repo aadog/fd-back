@@ -20,7 +20,7 @@ func init(){
 func FlagLsPsMain(args []string)error{
 
 	FlagLsPs.Parse(args)
-	if FlagLsApp.Parsed() {
+	if FlagLsPs.Parsed() {
 		return NewLsPs().Run(LsPsParam{*param_lsps_devi})
 	}
 	return errors.New("lsps命令解析失败")

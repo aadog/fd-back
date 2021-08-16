@@ -19,7 +19,7 @@ func init(){
 
 func FlagLsDevMain(args []string)error{
 	FlagLsDev.Parse(args)
-	if FlagLsApp.Parsed(){
+	if FlagLsDev.Parsed(){
 		return NewLsDev().Run(LsDevParam{})
 	}
 	return errors.New("lsdev命令解析失败")
