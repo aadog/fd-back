@@ -6,7 +6,7 @@ require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20210608160410-67692ebc98de
 	github.com/a97077088/frida-go v0.0.0-20210730162326-5858a01c2323
 	github.com/cheggaaa/pb/v3 v3.0.8
-	github.com/gin-gonic/gin v1.7.3
+	github.com/gin-gonic/gin v1.7.4
 	github.com/json-iterator/go v1.1.11
 	github.com/unrolled/render v1.4.0
 )
