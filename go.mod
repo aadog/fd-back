@@ -14,9 +14,9 @@ require (
 require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/a97077088/dylib v0.0.0-20210726041103-cf42039dadef // indirect
-	github.com/a97077088/libfridabinres v0.0.0-20210818003551-63fd30ba4c69 // indirect
+	github.com/a97077088/libfridabinres v0.0.0-20210820165953-344a14a7c579 // indirect
 	github.com/fatih/color v1.12.0 // indirect
-	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/fsnotify/fsnotify v1.5.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
