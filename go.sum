@@ -36,6 +36,8 @@ github.com/a97077088/libfridabinres v0.0.0-20210818011037-b20d89bb3970 h1:DAirax
 github.com/a97077088/libfridabinres v0.0.0-20210818011037-b20d89bb3970/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/a97077088/libfridabinres v0.0.0-20210820165953-344a14a7c579 h1:7D9WclfPcDJfgl/6TFjPpaVmQg48VuKPQXfhcubSi+0=
 github.com/a97077088/libfridabinres v0.0.0-20210820165953-344a14a7c579/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
+github.com/a97077088/libfridabinres v0.0.0-20210824060810-65670ebf4f65 h1:NYTHwtnETFb4pZZ8O8zX9yB9VprqG7S4J0c5X/IvjqI=
+github.com/a97077088/libfridabinres v0.0.0-20210824060810-65670ebf4f65/go.mod h1:ooSNVs9odQ8D99rUL1SsXoYDiXzC5yGvdWG1sYeir+0=
 github.com/cheggaaa/pb/v3 v3.0.8 h1:bC8oemdChbke2FHIIGy9mn4DPJ2caZYQnfbRqwmdCoA=
 github.com/cheggaaa/pb/v3 v3.0.8/go.mod h1:UICbiLec/XO6Hw6k+BHEtHeQFzzBH4i2/qk/ow1EJTA=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
