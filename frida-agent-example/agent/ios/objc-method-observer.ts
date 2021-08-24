@@ -1,39 +1,42 @@
 /*
- * To observe a single class by name:
- *     observeClass('NSString');
- *
- * To dynamically resolve methods to observe (see ApiResolver):
- *     observeSomething('*[* *Password:*]');
- */
+    * To observe a single class by name:
+    *     observeClass('NSString');
+    *
+    * To dynamically resolve methods to observe (see ApiResolver):
+    *     observeSomething('*[* *Password:*]');
+    */
 
 var ISA_MASK = ptr('0x0000000ffffffff8');
 var ISA_MAGIC_MASK = ptr('0x000003f000000001');
 var ISA_MAGIC_VALUE = ptr('0x000001a000000001');
+
 // @ts-ignore
 export function observeSomething(pattern) {
     var resolver = new ApiResolver('objc');
     // @ts-ignore
     var things = resolver.enumerateMatchesSync(pattern);
     // @ts-ignore
-    things.forEach(function(thing) {
+    things.forEach(function (thing) {
         observeMethod(thing.address, '', thing.name);
     });
 }
+
 // @ts-ignore
 export function observeClass(name) {
     var k = ObjC.classes[name];
     if (!k) {
         return;
     }
-    k.$ownMethods.forEach(function(m) {
+    k.$ownMethods.forEach(function (m) {
         observeMethod(k[m].implementation, name, m);
     });
 }
+
 // @ts-ignore
 export function observeMethod(impl, name, m) {
     console.log('Observing ' + name + ' ' + m);
     Interceptor.attach(impl, {
-        onEnter: function(a) {
+        onEnter: function (a) {
             this.log = [];
             this.log.push('(' + a[0] + ') ' + name + ' ' + m);
             if (m.indexOf(':') !== -1) {
@@ -53,7 +56,7 @@ export function observeMethod(impl, name, m) {
                 .map(DebugSymbol.fromAddress).join("\n"));
         },
 
-        onLeave: function(r) {
+        onLeave: function (r) {
             if (isObjC(r)) {
                 this.log.push('RET: ' + new ObjC.Object(r).toString());
             } else {
@@ -70,6 +73,7 @@ export function isObjC(p) {
     var klass = getObjCClassPtr(p);
     return !klass.isNull();
 }
+
 // @ts-ignore
 export function getObjCClassPtr(p) {
     /*
@@ -90,6 +94,7 @@ export function getObjCClassPtr(p) {
     }
     return NULL;
 }
+
 // @ts-ignore
 export function isReadable(p) {
     try {
@@ -99,3 +104,4 @@ export function isReadable(p) {
         return false;
     }
 }
+

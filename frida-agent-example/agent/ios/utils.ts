@@ -7,12 +7,14 @@ export function NsStr(str) {
 }
 
 /* NSString -> NSData */
+
 // @ts-ignore
 export function NsStr2NsData(nsstr) {
     return nsstr.dataUsingEncoding_(4);
 }
 
 /* NSData -> NSString */
+
 // @ts-ignore
 export function NsData2NsStr(nsdata) {
     return ObjC.classes.NSString.alloc().initWithData_encoding_(nsdata, 4);
@@ -35,7 +37,7 @@ export function getScreenSize() {
 
 // 获取keychain数据
 export function getKeychain() {
-    var NSMutableDictionary=ObjC.classes.NSMutableDictionary;
+    var NSMutableDictionary = ObjC.classes.NSMutableDictionary;
     // @ts-ignore
     var kCFBooleanTrue = ObjC.Object(getExportFunction("d", "kCFBooleanTrue"));
     // @ts-ignore
@@ -55,13 +57,13 @@ export function getKeychain() {
     // @ts-ignore
     var kSecClassIdentity = ObjC.Object(getExportFunction("d", "kSecClassIdentity"));
     // @ts-ignore
-    var kSecClass = ObjC.Object(getExportFunction("d","kSecClass"));
+    var kSecClass = ObjC.Object(getExportFunction("d", "kSecClass"));
 
     var query = NSMutableDictionary.alloc().init();
     // @ts-ignore
     var SecItemCopyMatching = getExportFunction("f", "SecItemCopyMatching", "int", ["pointer", "pointer"]);
     [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey,
-        kSecClassIdentity].forEach(function(secItemClass) {
+        kSecClassIdentity].forEach(function (secItemClass) {
             query.setObject_forKey_(kCFBooleanTrue, kSecReturnAttributes);
             query.setObject_forKey_(kSecMatchLimitAll, kSecMatchLimit);
             query.setObject_forKey_(secItemClass, kSecClass);
@@ -87,6 +89,7 @@ export function getClassModule(classname) {
     // @ts-ignore
     return Memory.readUtf8String(class_getImageName(class_));
 }
+
 // @ts-ignore
 export function getAddressModule(address) {
     // @ts-ignore
@@ -164,7 +167,7 @@ export function forceTrustCert() {
 export function traceView() {
     var UIApplication = ObjC.classes.UIApplication;
     Interceptor.attach(UIApplication["- sendAction:to:from:forEvent:"].implementation, {
-        onEnter:function(args) {
+        onEnter: function (args) {
             // @ts-ignore
             var action = Memory.readUtf8String(args[2]);
             // @ts-ignore
