@@ -26,7 +26,7 @@ export function dump_luaL_loadbuffer(loadL_bufferPtr:NativePointer){
         }
     })
 }
-export function hook_luaL_loadbuffer(loadL_bufferPtr:NativePointer,callback:(scriptName:String,scriptStrBuffer:String,scriptBuffer:ArrayBuffer)=>void){
+export function hook_luaL_loadbuffer(loadL_bufferPtr:NativePointer,callback:(scriptName:String,scriptStrBuffer:NativePointer,scriptLen:number)=>void){
     Interceptor.attach(loadL_bufferPtr,{
         onEnter:function (args) {
             // console.log(args[2].readCString(args[3].toInt32()))
@@ -36,9 +36,9 @@ export function hook_luaL_loadbuffer(loadL_bufferPtr:NativePointer,callback:(scr
                 if(scriptFileName==null){
                     scriptFileName=""
                 }
-                callback(scriptFileName,script!,args[1].readByteArray(args[2].toInt32())!)
+                callback(scriptFileName,args[1],args[2].toInt32())
             }else{
-                callback("",script!,args[1].readByteArray(args[2].toInt32())!)
+                callback("",args[1],args[2].toInt32())
             }
 
         },
