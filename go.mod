@@ -14,7 +14,7 @@ require (
 require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
 	github.com/a97077088/dylib v0.0.0-20210726041103-cf42039dadef // indirect
-	github.com/a97077088/libfridabinres v0.0.0-20210831072416-37d8c0f7d594 // indirect
+	github.com/a97077088/libfridabinres v0.0.0-20210909094014-6167cf9ab81e // indirect
 	github.com/fatih/color v1.12.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -24,7 +24,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
-	github.com/mattn/go-isatty v0.0.13 // indirect
+	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
