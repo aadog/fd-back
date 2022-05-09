@@ -13,11 +13,11 @@
 * ** ** *
 
 
-![](gif/run.webp)
+![](md/gif/run.webp)
 
 #### [Precompiled binaries can be downloaded here](https://github.com/a97077088/fd/releases)
 
-![](gif/bagbak.webp)
+![](md/gif/bagbak.webp)
 
 #### what's frida:
 - **The world's top full platform reverse dynamic debugging framework**

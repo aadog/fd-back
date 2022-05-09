@@ -7,7 +7,7 @@
 * **优雅的使用webstorm开发(拥有智能完美的智能提示,内置了一些调试库) **
 * **支持资源嵌入,CModule嵌入 **
 
-![](gif/run.webp)
+![](md/gif/run.webp)
 
 #### a brief introdction
 * **frida runtime (no python required, only a single file)**
@@ -15,7 +15,7 @@
 
 #### [预编译的二进制文件在这里下载](https://github.com/a97077088/fd/releases)
 
-![](gif/bagbak.webp)
+![](md/gif/bagbak.webp)
 
 #### 什么是frida:
 - **世界顶级全平台逆向动态调试框架**

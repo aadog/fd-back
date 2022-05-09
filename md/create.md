@@ -1,4 +1,4 @@
-![](../gif/create.webp)
+![](gif/create.webp)
 
 #### create(创建工程) 使用方法:
 ````

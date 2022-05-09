@@ -1,4 +1,4 @@
-![](../gif/bagbak.webp)
+![](gif/bagbak.webp)
 
 #### bagbak(ipa脱壳) 使用方法:
 

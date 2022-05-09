@@ -1,4 +1,4 @@
-![](../gif/compile.webp)
+![](gif/compile.webp)
 
 #### compile(显示进程列表) 使用方法:
 ````

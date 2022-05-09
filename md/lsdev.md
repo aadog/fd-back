@@ -1,4 +1,4 @@
-![](../gif/lsdev.webp)
+![](gif/lsdev.webp)
 
 #### lsdev(显示所有设备列表) 使用方法:
 ````

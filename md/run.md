@@ -1,4 +1,4 @@
-![](../gif/run.webp)
+![](gif/run.webp)
 
 #### 如果进程不存在，并且是Applicatoin,那么将以spawn模式启动
 

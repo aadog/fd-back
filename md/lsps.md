@@ -1,4 +1,4 @@
-![](../gif/lsps.webp)
+![](gif/lsps.webp)
 
 #### lsps(显示进程列表) 使用方法:
 ````

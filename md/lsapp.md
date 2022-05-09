@@ -1,4 +1,4 @@
-![](../gif/lsapp.webp)
+![](gif/lsapp.webp)
 
 #### lsapp(显示app列表) 使用方法:
 ````

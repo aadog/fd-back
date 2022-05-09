@@ -1,4 +1,4 @@
-![](../gif/api.webp)
+![](gif/api.webp)
 
 #### api(导出api) 使用方法:
 ````
