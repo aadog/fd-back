@@ -6,7 +6,7 @@ require (
 	code.cloudfoundry.org/bytefmt v0.0.0-20211005130812-5bb3c17173e5
 	github.com/a97077088/frida-go v0.0.0-20210730162326-5858a01c2323
 	github.com/cheggaaa/pb/v3 v3.0.9-0.20211017104833-bbc97ac48688
-	github.com/gin-gonic/gin v1.7.2-0.20211128012617-a06d546f5c2e
+	github.com/gin-gonic/gin v1.7.7
 	github.com/json-iterator/go v1.1.12
 	github.com/unrolled/render v1.4.1
 )
@@ -21,7 +21,7 @@ require (
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.0 // indirect
-	github.com/goccy/go-json v0.9.7 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
